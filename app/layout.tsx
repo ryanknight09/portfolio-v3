@@ -1,3 +1,4 @@
+import { Header } from "@/components/Header";
 import { SanityLive } from "@/sanity/lib/live";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Header />
         {children}
         <SanityLive />
       </body>
