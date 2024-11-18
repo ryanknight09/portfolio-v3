@@ -76,6 +76,18 @@ export type Technology = {
   _rev: string;
   title?: string;
   slug?: Slug;
+  mainImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
   description?: string;
 };
 
@@ -85,8 +97,8 @@ export type WorkExperience = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  title?: string;
   jobTitle?: string;
-  companyName?: string;
   slug?: Slug;
   location?: string;
   startDate?: string;
@@ -99,6 +111,18 @@ export type WorkExperience = {
     _key: string;
     [internalGroqTypeReferenceTo]?: "technology";
   }>;
+  mainImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
   projectHighlights?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -330,7 +354,9 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Technology | WorkExperience | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type InlineSvg = string;
+
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Technology | WorkExperience | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | InlineSvg;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: sanity/lib/queries.ts
 // Variable: POSTS_QUERY
