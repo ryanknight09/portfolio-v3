@@ -1,4 +1,4 @@
-import { Header } from "@/components/Header";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { SanityLive } from "@/sanity/lib/live";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -26,12 +26,18 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          forcedTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
         <SanityLive />
       </body>
     </html>
