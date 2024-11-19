@@ -80,6 +80,15 @@ export const workExperienceType = defineType({
       of: [{ type: "block" }],
       description: "Details of notable projects you worked on",
     }),
+    defineField({
+      title: "Linkedin url",
+      name: "linkedin",
+      type: "url",
+      validation: (Rule) =>
+        Rule.uri({
+          scheme: ["https"],
+        }),
+    }),
   ],
   preview: {
     select: {

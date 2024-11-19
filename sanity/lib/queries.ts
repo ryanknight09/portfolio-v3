@@ -22,6 +22,22 @@ export const POSTS_QUERY =
   }
 }`);
 
+export const EXPERIENCE_QUERY =
+  defineQuery(`*[_type == "workExperience" && defined(slug.current)][0...12]{
+  _id,
+  title,
+  slug,
+  body,
+    "technologies": coalesce(
+    technologies[]->{
+      _id,
+      slug,
+      title
+    },
+    []
+  ),
+}`);
+
 export const POSTS_SLUGS_QUERY =
   defineQuery(`*[_type == "post" && defined(slug.current)]{ 
   "slug": slug.current
@@ -33,6 +49,7 @@ export const POST_QUERY =
   title,
   body,
   mainImage,
+  technology,
   publishedAt,
   "categories": coalesce(
     categories[]->{

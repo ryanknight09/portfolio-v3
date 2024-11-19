@@ -3,6 +3,7 @@ import { type SchemaTypeDefinition } from "sanity";
 import { authorType } from "./authorType";
 import { blockContentType } from "./blockContentType";
 import { categoryType } from "./categoryType";
+import { hero } from "./heroType";
 import { postType } from "./postType";
 import { technologyType } from "./technologyType";
 import { workExperienceType } from "./workExperienceType";
@@ -15,5 +16,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     authorType,
     workExperienceType,
     technologyType,
+    hero,
   ],
 };

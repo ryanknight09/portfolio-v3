@@ -19,32 +19,17 @@ export const technologyType = defineType({
       },
     }),
     defineField({
-      name: "mainImage",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: "alt",
-          type: "string",
-          title: "Alternative text",
-        },
-      ],
-    }),
-    defineField({
       name: "description",
       type: "text",
     }),
+    defineField({
+      title: "Link",
+      name: "href",
+      type: "url",
+      validation: (Rule) =>
+        Rule.uri({
+          scheme: ["https"],
+        }),
+    }),
   ],
-  preview: {
-    select: {
-      title: "title",
-      media: "mainImage",
-    },
-    // prepare(selection) {
-    //   const { jobTitle } = selection;
-    //   return { ...selection, subtitle: jobTitle && jobTitle };
-    // },
-  },
 });
