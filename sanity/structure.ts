@@ -12,6 +12,7 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem("workExperience").title("Work Experience"),
       S.documentTypeListItem("technology").title("Technologies"),
       S.divider(),
+      S.documentTypeListItem("hero").title("Hero"),
       ...S.documentTypeListItems().filter(
         (item) =>
           item.getId() &&
@@ -21,6 +22,7 @@ export const structure: StructureResolver = (S) =>
             "author",
             "workExperience",
             "technology",
+            "hero",
           ].includes(item.getId()!)
       ),
     ]);

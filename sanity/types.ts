@@ -68,14 +68,15 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Technology = {
+export type Hero = {
   _id: string;
-  _type: "technology";
+  _type: "hero";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   title?: string;
-  slug?: Slug;
+  jobTitle?: string;
+  location?: string;
   mainImage?: {
     asset?: {
       _ref: string;
@@ -88,7 +89,36 @@ export type Technology = {
     alt?: string;
     _type: "image";
   };
+  projectHighlights?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type Technology = {
+  _id: string;
+  _type: "technology";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
   description?: string;
+  href?: string;
 };
 
 export type WorkExperience = {
@@ -141,6 +171,7 @@ export type WorkExperience = {
     _type: "block";
     _key: string;
   }>;
+  linkedin?: string;
 };
 
 export type Post = {
@@ -354,9 +385,7 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type InlineSvg = string;
-
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Technology | WorkExperience | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | InlineSvg;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Hero | Technology | WorkExperience | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: sanity/lib/queries.ts
 // Variable: POSTS_QUERY
@@ -428,13 +457,26 @@ export type POSTS_QUERYResult = Array<{
     } | null;
   } | null;
 }>;
+// Variable: EXPERIENCE_QUERY
+// Query: *[_type == "workExperience" && defined(slug.current)][0...12]{  _id,  title,  slug,  body,    "technologies": coalesce(    technologies[]->{      _id,      slug,      title    },    []  ),}
+export type EXPERIENCE_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  body: null;
+  technologies: Array<{
+    _id: string;
+    slug: Slug | null;
+    title: string | null;
+  }> | Array<never>;
+}>;
 // Variable: POSTS_SLUGS_QUERY
 // Query: *[_type == "post" && defined(slug.current)]{   "slug": slug.current}
 export type POSTS_SLUGS_QUERYResult = Array<{
   slug: string | null;
 }>;
 // Variable: POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
+// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  technology,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
 export type POST_QUERYResult = {
   _id: string;
   title: string | null;
@@ -480,6 +522,7 @@ export type POST_QUERYResult = {
     alt?: string;
     _type: "image";
   } | null;
+  technology: null;
   publishedAt: string | null;
   categories: Array<{
     _id: string;
@@ -507,7 +550,8 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"post\" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POSTS_QUERYResult;
+    "*[_type == \"workExperience\" && defined(slug.current)][0...12]{\n  _id,\n  title,\n  slug,\n  body,\n    \"technologies\": coalesce(\n    technologies[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n}": EXPERIENCE_QUERYResult;
     "*[_type == \"post\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": POSTS_SLUGS_QUERYResult;
-    "*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POST_QUERYResult;
+    "*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  technology,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POST_QUERYResult;
   }
 }
