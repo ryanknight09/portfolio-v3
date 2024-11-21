@@ -41,7 +41,7 @@ export default async function RootLayout({
           <section className="min-h-screen w-auto">
             <div className="w-full flex flex-col md:flex-row">
               <Navigation />
-              {children}
+              <main className="p-12">{children}</main>
             </div>
           </section>
         </ThemeProvider>

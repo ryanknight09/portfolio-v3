@@ -1,62 +1,31 @@
+import { AnimatedButton } from "@/components/AnimatedButton";
+import { DashedArrayBorder } from "@/components/DashedArrayBorder";
+import { MapPin } from "lucide-react";
+
 export default async function Page() {
   return (
-    <main className="container mx-auto grid grid-cols-1 gap-6 p-12">
-      <h1 className="text-7xl mb-8 font-bold">My Blog Post</h1>
-      <p>
-        is simply dummy text of the printing and typesetting industry. Lorem
-        Ipsum has been the industry&apos;s standard dummy text ever since the
-        1500s, when an unknown printer took a galley of type and scrambled it to
-        make a type specimen book. It has survived not only five centuries, but
-        also the leap into electronic typesetting, remaining essentially
-        unchanged. It was popularised in the 1960s with the release of Letraset
-        sheets containing Lorem Ipsum passages, and more recently with desktop
-        publishing software like Aldus PageMaker including versions of Lorem
-        Ipsum.
-      </p>
-      <p>
-        is simply dummy text of the printing and typesetting industry. Lorem
-        Ipsum has been the industry&apos;s standard dummy text ever since the
-        1500s, when an unknown printer took a galley of type and scrambled it to
-        make a type specimen book. It has survived not only five centuries, but
-        also the leap into electronic typesetting, remaining essentially
-        unchanged. It was popularised in the 1960s with the release of Letraset
-        sheets containing Lorem Ipsum passages, and more recently with desktop
-        publishing software like Aldus PageMaker including versions of Lorem
-        Ipsum.
-      </p>
-      <p>
-        is simply dummy text of the printing and typesetting industry. Lorem
-        Ipsum has been the industry&apos;s standard dummy text ever since the
-        1500s, when an unknown printer took a galley of type and scrambled it to
-        make a type specimen book. It has survived not only five centuries, but
-        also the leap into electronic typesetting, remaining essentially
-        unchanged. It was popularised in the 1960s with the release of Letraset
-        sheets containing Lorem Ipsum passages, and more recently with desktop
-        publishing software like Aldus PageMaker including versions of Lorem
-        Ipsum.
-      </p>
-      <p>
-        is simply dummy text of the printing and typesetting industry. Lorem
-        Ipsum has been the industry&apos;s standard dummy text ever since the
-        1500s, when an unknown printer took a galley of type and scrambled it to
-        make a type specimen book. It has survived not only five centuries, but
-        also the leap into electronic typesetting, remaining essentially
-        unchanged. It was popularised in the 1960s with the release of Letraset
-        sheets containing Lorem Ipsum passages, and more recently with desktop
-        publishing software like Aldus PageMaker including versions of Lorem
-        Ipsum.
-      </p>
-      <p>
-        is simply dummy text of the printing and typesetting industry. Lorem
-        Ipsum has been the industry&apos;s standard dummy text ever since the
-        1500s, when an unknown printer took a galley of type and scrambled it to
-        make a type specimen book. It has survived not only five centuries, but
-        also the leap into electronic typesetting, remaining essentially
-        unchanged. It was popularised in the 1960s with the release of Letraset
-        sheets containing Lorem Ipsum passages, and more recently with desktop
-        publishing software like Aldus PageMaker including versions of Lorem
-        Ipsum.
-      </p>
-    </main>
+    <>
+      <section className="p-12 flex gap-12 flex-col">
+        <h1 className="text-7xl mb-8 font-bold">My Blog Post</h1>
+        <div className="text-muted-foreground text-sm overflow-auto">
+          <p className="whitespace-normal">
+            A passionate web designer with a knack for turning ideas into
+            visually stunning, user-friendly websites.
+          </p>
+        </div>
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <MapPin className="text-primary w-4 h-4" />
+            <p className="text-muted-foreground text-sm text-nowrap flex-1 overflow-hidden whitespace-nowrap text-ellipsis">
+              Spokane WA, United States
+            </p>
+          </div>
+          <DashedArrayBorder />
+          <AnimatedButton className="flex-shrink-0">
+            More About Me
+          </AnimatedButton>
+        </div>
+      </section>
+    </>
   );
 }
