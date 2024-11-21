@@ -52,6 +52,7 @@ export default {
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
+          accent: "hsl(var(--primary-accent))",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {

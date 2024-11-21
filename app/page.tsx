@@ -1,21 +1,62 @@
-import { CardWithForm } from "@/components/examples/CardWithForm";
-import { Button } from "@/components/ui/button";
-
 export default async function Page() {
   return (
-    <section className="container mx-auto grid grid-cols-1 gap-6 p-12">
-      <CardWithForm />
-      <Button className="w-max">Button</Button>
-      <Button className="w-max" variant="secondary">
-        Button
-      </Button>
-      <Button className="w-max" variant="ghost">
-        Button
-      </Button>
-      <Button className="w-max" variant="outline">
-        Button
-      </Button>
-      <h1 className="text-3xl">Ryan Knight</h1>
-    </section>
+    <main className="container mx-auto grid grid-cols-1 gap-6 p-12">
+      <h1 className="text-7xl mb-8 font-bold">My Blog Post</h1>
+      <p>
+        is simply dummy text of the printing and typesetting industry. Lorem
+        Ipsum has been the industry&apos;s standard dummy text ever since the
+        1500s, when an unknown printer took a galley of type and scrambled it to
+        make a type specimen book. It has survived not only five centuries, but
+        also the leap into electronic typesetting, remaining essentially
+        unchanged. It was popularised in the 1960s with the release of Letraset
+        sheets containing Lorem Ipsum passages, and more recently with desktop
+        publishing software like Aldus PageMaker including versions of Lorem
+        Ipsum.
+      </p>
+      <p>
+        is simply dummy text of the printing and typesetting industry. Lorem
+        Ipsum has been the industry&apos;s standard dummy text ever since the
+        1500s, when an unknown printer took a galley of type and scrambled it to
+        make a type specimen book. It has survived not only five centuries, but
+        also the leap into electronic typesetting, remaining essentially
+        unchanged. It was popularised in the 1960s with the release of Letraset
+        sheets containing Lorem Ipsum passages, and more recently with desktop
+        publishing software like Aldus PageMaker including versions of Lorem
+        Ipsum.
+      </p>
+      <p>
+        is simply dummy text of the printing and typesetting industry. Lorem
+        Ipsum has been the industry&apos;s standard dummy text ever since the
+        1500s, when an unknown printer took a galley of type and scrambled it to
+        make a type specimen book. It has survived not only five centuries, but
+        also the leap into electronic typesetting, remaining essentially
+        unchanged. It was popularised in the 1960s with the release of Letraset
+        sheets containing Lorem Ipsum passages, and more recently with desktop
+        publishing software like Aldus PageMaker including versions of Lorem
+        Ipsum.
+      </p>
+      <p>
+        is simply dummy text of the printing and typesetting industry. Lorem
+        Ipsum has been the industry&apos;s standard dummy text ever since the
+        1500s, when an unknown printer took a galley of type and scrambled it to
+        make a type specimen book. It has survived not only five centuries, but
+        also the leap into electronic typesetting, remaining essentially
+        unchanged. It was popularised in the 1960s with the release of Letraset
+        sheets containing Lorem Ipsum passages, and more recently with desktop
+        publishing software like Aldus PageMaker including versions of Lorem
+        Ipsum.
+      </p>
+      <p>
+        is simply dummy text of the printing and typesetting industry. Lorem
+        Ipsum has been the industry&apos;s standard dummy text ever since the
+        1500s, when an unknown printer took a galley of type and scrambled it to
+        make a type specimen book. It has survived not only five centuries, but
+        also the leap into electronic typesetting, remaining essentially
+        unchanged. It was popularised in the 1960s with the release of Letraset
+        sheets containing Lorem Ipsum passages, and more recently with desktop
+        publishing software like Aldus PageMaker including versions of Lorem
+        Ipsum.
+      </p>
+    </main>
   );
 }

@@ -1,3 +1,5 @@
+import { Navigation } from "@/components/navigation/Navigation";
+import { TailwindIndicator } from "@/components/theme/TailwindIndicator";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { SanityLive } from "@/sanity/lib/live";
 import type { Metadata } from "next";
@@ -28,7 +30,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth h-screen`}
       >
         <ThemeProvider
           attribute="class"
@@ -36,9 +38,15 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <section className="min-h-screen w-auto">
+            <div className="w-full flex flex-col md:flex-row">
+              <Navigation />
+              {children}
+            </div>
+          </section>
         </ThemeProvider>
         <SanityLive />
+        <TailwindIndicator />
       </body>
     </html>
   );
