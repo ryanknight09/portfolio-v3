@@ -9,7 +9,7 @@ export default async function Page() {
   const posts = await client.fetch(POSTS_QUERY, {}, options);
 
   return (
-    <div className="grid grid-cols-1 gap-6 p-12 overflow-y-auto">
+    <div className=" container mx-auto grid grid-cols-1 gap-6 p-12 overflow-y-auto">
       <Title>Post Index</Title>
       <div className="flex flex-col gap-24 py-12">
         {posts.map((post) => (
