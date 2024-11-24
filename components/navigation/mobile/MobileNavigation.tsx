@@ -29,13 +29,19 @@ export const MobileNavigation = () => {
       transition={{ duration: 0.35, ease: "easeInOut" }}
       className="sticky top-0 flex items-center justify-between p-6 md:hidden"
     >
-      <Image
-        alt="me"
-        src="/images/me.jpg"
-        width={48}
-        height={48}
-        className="aspect-square rounded-md object-cover"
-      />
+      <div className="flex gap-4 items-center">
+        <Image
+          alt="me"
+          src="/images/me.jpg"
+          width={48}
+          height={48}
+          className="aspect-square rounded-md object-cover"
+        />
+        <div className="bg-primary-accent rounded-l-xl rounded-r-xl px-3 py-1 flex items-center justify-center">
+          <div className="w-1 h-1 bg-primary aspect-square rounded-2xl mr-2" />
+          <p className="text-sm text-primary font-medium">@ QIR</p>
+        </div>
+      </div>
       <button>
         <MenuToggle className="w-10 h-10" />
       </button>

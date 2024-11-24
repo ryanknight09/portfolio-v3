@@ -39,9 +39,11 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <section className="min-h-screen w-auto">
-            <div className="w-full flex flex-col md:flex-row">
+            <div className="w-full flex flex-col md:flex-row h-screen">
               <Navigation />
-              <main className="p-12">{children}</main>
+              <main className="py-12 px-6 md:p-6 xl:p-12 mx-auto w-full h-full">
+                {children}
+              </main>
             </div>
           </section>
         </ThemeProvider>
