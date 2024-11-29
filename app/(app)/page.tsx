@@ -1,22 +1,27 @@
 import { AnimatedButton } from "@/components/AnimatedButton";
+import { ProjectCard } from "@/components/ProjectCard";
 import { MapPin } from "lucide-react";
+
+const pics = [
+  "project-stock.avif",
+  "project-stock2.avif",
+  "project-stock3.avif",
+];
 
 export default async function Page() {
   return (
-    <>
-      <section className="md:py-12 flex gap-12 flex-col overflow-x-hidden">
-        <div>
-          <h1 className="text-4xl md:text-5xl max-w-64 md:max-w-sm lg:max-w-xl break-words">
-            Hello Everyone! Im Ryan.
-          </h1>
-        </div>
+    <div className="flex flex-col gap-24">
+      <section className="md:pt-12 flex gap-12 flex-col overflow-x-hidden">
+        <h1 className="text-4xl md:text-5xl max-w-64 md:max-w-sm lg:max-w-xl break-words">
+          Hello Everyone! Im Ryan.
+        </h1>
         <div className="text-muted-foreground text-sm overflow-auto">
-          <p className="break-word">
+          <p className="break-word max-w-lg">
             A passionate web designer with a knack for turning ideas into
             visually stunning, user-friendly websites.
           </p>
         </div>
-        <div className="flex items-center flex-col md:flex-row gap-6 justify-between overflow-x-hidden">
+        <div className="flex items-center flex-col md:flex-row justify-between overflow-x-hidden gap-12">
           <div className="flex gap-6 overflow-hidden items-center justify-start max-w-4xl w-full">
             <div className="flex gap-6 max-w-max">
               <div className="flex gap-2 justify-start">
@@ -28,12 +33,21 @@ export default async function Page() {
             </div>
             <div className="flex-1 border-dotted-custom h-1" />
           </div>
-
           <AnimatedButton className="w-full md:max-w-max">
             More About Me
           </AnimatedButton>
         </div>
       </section>
-    </>
+      <section className="flex gap-12 flex-col overflow-x-hidden">
+        <h1 className="text-xl md:text-2xl max-w-64 md:max-w-sm lg:max-w-xl break-words">
+          Recent Projects
+        </h1>
+        <div className={`grid grid-cols-1 md:grid-cols-${pics.length} gap-8`}>
+          {pics.map((pic) => (
+            <ProjectCard key={pic} pic={pic} />
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }
