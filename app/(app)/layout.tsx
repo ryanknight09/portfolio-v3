@@ -12,9 +12,9 @@ export default async function Layout({
         <MobileNavigation />
         <div className="flex flex-col h-full md:flex-row w-full relative">
           <DesktopNav />
-          <main className="py-12 px-6 md:p-6 xl:p-12 mx-auto h-full w-full flex relative items-center flex-col">
+          <main className="py-12 px-6 md:p-6 xl:p-12 mx-auto h-auto w-full flex relative items-center flex-col">
             {children}
-            <footer className="flex justify-center mt-auto">
+            <footer className="flex justify-center mt-auto pt-12">
               <p>Made with Next.js, Tailwind, Framer-Motion.</p>
             </footer>
           </main>

@@ -19,7 +19,7 @@ export const DesktopMenu = () => {
   const pathname = usePathname().replace(/^\/+/, "");
 
   return (
-    <div className="grid gap-6">
+    <div className="grid gap-4">
       {paths.map((path) => {
         const isCurrentPath = pathname === path.url.replace(/^\/+/, "");
 
