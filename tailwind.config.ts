@@ -125,6 +125,8 @@ export default {
         "infinite-scroll": "infinite-scroll 50s linear infinite",
         "infinite-scroll-half": "infinite-scroll 100s linear infinite",
         "infinite-scroll-arrow": "infinite-scroll-arrow 5s linear infinite",
+        "infinite-scroll-arrow-slow":
+          "infinite-scroll-arrow 40s linear infinite",
       },
     },
   },

@@ -1,3 +1,4 @@
+import { Connect } from "@/components/Connect";
 import { Hero } from "@/components/home/Hero";
 import { PlacesWorked } from "@/components/home/PlacesWorked";
 import { Projects } from "@/components/home/Projects";
@@ -19,6 +20,7 @@ export default async function Page() {
       <Projects />
       <PlacesWorked experiences={experiences} />
       <Stack stack={stack} />
+      <Connect />
     </div>
   );
 }

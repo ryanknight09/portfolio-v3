@@ -14,16 +14,19 @@ const arrows = Array.from({ length: 6 }, (_, index) => index + 1);
 export const ProjectCard = ({ pic, classname, tag, title }: Props) => {
   return (
     <div
-      className={cn("flex flex-col gap-6 py-6 group cursor-pointer", classname)}
+      className={cn(
+        "flex flex-col gap-6 py-6 group cursor-pointer group relative overflow-hidden",
+        classname
+      )}
     >
-      <div>
+      <div className="overflow-hidden rounded-md">
         <Image
           alt="me"
           src={`/images/${pic}`}
           width={0}
           height={0}
           sizes="100%"
-          className="aspect-square rounded-md w-full h-full"
+          className="aspect-square rounded-md w-full h-full transition-transform duration-300 group-hover:scale-105"
         />
       </div>
       <div className="flex justify-between items-center">
