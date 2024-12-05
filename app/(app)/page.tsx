@@ -12,8 +12,6 @@ export default async function Page() {
   const experiences = await client.fetch(EXPERIENCE_QUERY, {}, options);
   const stack = await client.fetch(TECHNOLOGY_QUERY, {}, options);
 
-  console.log(experiences);
-
   return (
     <div className="flex flex-col gap-24 w-full">
       <Hero />

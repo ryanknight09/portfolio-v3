@@ -11,13 +11,16 @@ export const TECHNOLOGY_QUERY =
 }`);
 
 export const EXPERIENCE_QUERY =
-  defineQuery(`*[_type == "workExperience" && defined(slug.current)][0...12]{
+  defineQuery(`*[_type == "workExperience" && defined(slug.current)]|order(startDate desc)[0...12]{
   _id,
   title,
   slug,
   mainImage,
   description,
   jobTitle,
+  startDate,
+  endDate,
+  isCurrent
 }`);
 
 export const POSTS_QUERY =

@@ -6,7 +6,7 @@ const arrows = Array.from({ length: 50 }, (_, index) => index + 1);
 export const Connect = () => (
   <Link
     href={"contact"}
-    className="z-0 w-full flex items-center justify-center clamp-font relative group cursor-pointer"
+    className="z-0 w-full flex items-center justify-center clamp-font relative group cursor-pointer mt-6"
   >
     <p className="group-hover:opacity-30 transition-opacity duration-300">
       Let&apos;s Connect!

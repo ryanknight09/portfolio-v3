@@ -3,7 +3,14 @@
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { type NavigationItem } from "@/types/navigationItem";
-import { CircleUser, FolderGit2, House, Mail, Newspaper } from "lucide-react";
+import {
+  CircleUser,
+  FolderGit2,
+  House,
+  Layers,
+  Mail,
+  Newspaper,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -11,6 +18,7 @@ const paths: NavigationItem[] = [
   { name: "home", url: "/", icon: House },
   { name: "about", url: "/about", icon: CircleUser },
   { name: "projects", url: "/projects", icon: FolderGit2 },
+  { name: "stacks", url: "/stacks", icon: Layers },
   { name: "posts", url: "/posts", icon: Newspaper },
   { name: "contact", url: "/contact", icon: Mail },
 ];

@@ -1,4 +1,4 @@
-import { AnimatedButton } from "@/components/AnimatedButton";
+import { AnimatedLink } from "@/components/AnimatedLink";
 import { ProjectCard } from "@/components/ProjectCard";
 import { DottedLine, DottedLineFlexContainer } from "../DottedLine";
 
@@ -27,9 +27,9 @@ export const Projects = () => (
     </div>
     <DottedLineFlexContainer>
       <DottedLine />
-      <AnimatedButton className="w-full md:max-w-max">
+      <AnimatedLink className="w-full md:max-w-max" href="projects">
         View All Projects
-      </AnimatedButton>
+      </AnimatedLink>
     </DottedLineFlexContainer>
   </section>
 );

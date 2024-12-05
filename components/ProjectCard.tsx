@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   pic: string;
@@ -13,7 +14,8 @@ const arrows = Array.from({ length: 6 }, (_, index) => index + 1);
 
 export const ProjectCard = ({ pic, classname, tag, title }: Props) => {
   return (
-    <div
+    <Link
+      href={`projects/${title}`}
       className={cn(
         "flex flex-col gap-6 py-6 group cursor-pointer group relative overflow-hidden",
         classname
@@ -44,6 +46,6 @@ export const ProjectCard = ({ pic, classname, tag, title }: Props) => {
           </ul>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
