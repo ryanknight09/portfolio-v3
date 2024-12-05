@@ -27,6 +27,10 @@ export const workExperienceType = defineType({
       },
     }),
     defineField({
+      name: "description",
+      type: "text",
+    }),
+    defineField({
       name: "location",
       title: "Location",
       type: "string",

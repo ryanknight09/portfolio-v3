@@ -1,3 +1,5 @@
+"use client";
+
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { type NavigationItem } from "@/types/navigationItem";
@@ -17,7 +19,7 @@ export const DesktopMenu = () => {
   const pathname = usePathname().replace(/^\/+/, "");
 
   return (
-    <div className="grid gap-6">
+    <div className="grid gap-4">
       {paths.map((path) => {
         const isCurrentPath = pathname === path.url.replace(/^\/+/, "");
 

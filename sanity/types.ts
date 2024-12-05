@@ -118,6 +118,7 @@ export type Technology = {
   title?: string;
   slug?: Slug;
   description?: string;
+  tag?: string;
   href?: string;
 };
 
@@ -130,6 +131,7 @@ export type WorkExperience = {
   title?: string;
   jobTitle?: string;
   slug?: Slug;
+  description?: string;
   location?: string;
   startDate?: string;
   endDate?: string;
@@ -388,6 +390,37 @@ export type SanityImageMetadata = {
 export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Hero | Technology | WorkExperience | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: sanity/lib/queries.ts
+// Variable: TECHNOLOGY_QUERY
+// Query: *[_type == "technology" && defined(slug.current)][]{  _id,  title,  slug,  description,  href,  tag}
+export type TECHNOLOGY_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  description: string | null;
+  href: string | null;
+  tag: string | null;
+}>;
+// Variable: EXPERIENCE_QUERY
+// Query: *[_type == "workExperience" && defined(slug.current)][0...12]{  _id,  title,  slug,  mainImage,  description,  jobTitle,}
+export type EXPERIENCE_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  mainImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  description: string | null;
+  jobTitle: string | null;
+}>;
 // Variable: POSTS_QUERY
 // Query: *[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{  _id,  title,  slug,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
 export type POSTS_QUERYResult = Array<{
@@ -456,19 +489,6 @@ export type POSTS_QUERYResult = Array<{
       _type: "image";
     } | null;
   } | null;
-}>;
-// Variable: EXPERIENCE_QUERY
-// Query: *[_type == "workExperience" && defined(slug.current)][0...12]{  _id,  title,  slug,  body,    "technologies": coalesce(    technologies[]->{      _id,      slug,      title    },    []  ),}
-export type EXPERIENCE_QUERYResult = Array<{
-  _id: string;
-  title: string | null;
-  slug: Slug | null;
-  body: null;
-  technologies: Array<{
-    _id: string;
-    slug: Slug | null;
-    title: string | null;
-  }> | Array<never>;
 }>;
 // Variable: POSTS_SLUGS_QUERY
 // Query: *[_type == "post" && defined(slug.current)]{   "slug": slug.current}
@@ -549,8 +569,9 @@ export type POST_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    "*[_type == \"technology\" && defined(slug.current)][]{\n  _id,\n  title,\n  slug,\n  description,\n  href,\n  tag\n}": TECHNOLOGY_QUERYResult;
+    "*[_type == \"workExperience\" && defined(slug.current)][0...12]{\n  _id,\n  title,\n  slug,\n  mainImage,\n  description,\n  jobTitle,\n}": EXPERIENCE_QUERYResult;
     "*[_type == \"post\" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POSTS_QUERYResult;
-    "*[_type == \"workExperience\" && defined(slug.current)][0...12]{\n  _id,\n  title,\n  slug,\n  body,\n    \"technologies\": coalesce(\n    technologies[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n}": EXPERIENCE_QUERYResult;
     "*[_type == \"post\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": POSTS_SLUGS_QUERYResult;
     "*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  technology,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POST_QUERYResult;
   }

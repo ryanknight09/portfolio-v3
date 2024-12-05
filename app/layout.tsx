@@ -1,4 +1,3 @@
-import { Navigation } from "@/components/navigation/Navigation";
 import { TailwindIndicator } from "@/components/theme/TailwindIndicator";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { SanityLive } from "@/sanity/lib/live";
@@ -38,14 +37,7 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <section className="min-h-screen w-auto">
-            <div className="w-full flex flex-col md:flex-row h-screen">
-              <Navigation />
-              <main className="py-12 px-6 md:p-6 xl:p-12 mx-auto w-full h-full">
-                {children}
-              </main>
-            </div>
-          </section>
+          {children}
         </ThemeProvider>
         <SanityLive />
         <TailwindIndicator />
