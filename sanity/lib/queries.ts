@@ -1,5 +1,25 @@
 import { defineQuery } from "next-sanity";
 
+export const TECHNOLOGY_QUERY =
+  defineQuery(`*[_type == "technology" && defined(slug.current)][]{
+  _id,
+  title,
+  slug,
+  description,
+  href,
+  tag
+}`);
+
+export const EXPERIENCE_QUERY =
+  defineQuery(`*[_type == "workExperience" && defined(slug.current)][0...12]{
+  _id,
+  title,
+  slug,
+  mainImage,
+  description,
+  jobTitle,
+}`);
+
 export const POSTS_QUERY =
   defineQuery(`*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{
   _id,
@@ -20,22 +40,6 @@ export const POSTS_QUERY =
     name,
     image
   }
-}`);
-
-export const EXPERIENCE_QUERY =
-  defineQuery(`*[_type == "workExperience" && defined(slug.current)][0...12]{
-  _id,
-  title,
-  slug,
-  body,
-    "technologies": coalesce(
-    technologies[]->{
-      _id,
-      slug,
-      title
-    },
-    []
-  ),
 }`);
 
 export const POSTS_SLUGS_QUERY =

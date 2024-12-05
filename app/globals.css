@@ -83,5 +83,6 @@ body {
     background-position: top;
     background-size: 7px 1px;
     background-repeat: repeat-x;
+    animation-play-state: paused;
   }
 }

@@ -23,6 +23,10 @@ export const technologyType = defineType({
       type: "text",
     }),
     defineField({
+      name: "tag",
+      type: "string",
+    }),
+    defineField({
       title: "Link",
       name: "href",
       type: "url",
