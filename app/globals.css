@@ -74,6 +74,9 @@ body {
 }
 
 @layer utilities {
+  .animate-pause {
+    animation-play-state: paused;
+  }
   .border-dotted-custom {
     background-image: linear-gradient(
       to right,
@@ -83,6 +86,21 @@ body {
     background-position: top;
     background-size: 7px 1px;
     background-repeat: repeat-x;
-    animation-play-state: paused;
+  }
+  .masked-gradient {
+    mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgb(0, 0, 0) 30%,
+      rgb(0, 0, 0) 70%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgb(0, 0, 0) 30%,
+      rgb(0, 0, 0) 70%,
+      rgba(0, 0, 0, 0) 100%
+    );
   }
 }

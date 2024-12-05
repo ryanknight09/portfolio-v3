@@ -9,7 +9,7 @@ interface Props {
   classname?: string;
 }
 
-const arrows = Array.from({ length: 3 }, (_, index) => index + 1);
+const arrows = Array.from({ length: 6 }, (_, index) => index + 1);
 
 export const ProjectCard = ({ pic, classname, tag, title }: Props) => {
   return (
@@ -31,9 +31,9 @@ export const ProjectCard = ({ pic, classname, tag, title }: Props) => {
           <p className="text-primary text-xs uppercase">{tag}</p>
           <h3 className="text-lg">{title}</h3>
         </div>
-        <div className="overflow-hidden max-w-[120px] hidden group-hover:flex">
+        <div className="overflow-hidden max-w-[120px] hidden group-hover:flex masked-gradient">
           <ul className="flex gap-8 group-hover:animate-infinite-scroll-arrow">
-            {[...arrows, ...arrows].map((arrow, index) => (
+            {arrows.map((arrow, index) => (
               <li key={`${arrow}-${index}`}>
                 <ArrowRight className="text-primary" />
               </li>
