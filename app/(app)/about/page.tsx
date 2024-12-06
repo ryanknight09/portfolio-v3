@@ -11,8 +11,6 @@ const options = { next: { revalidate: 10 } };
 export default async function Page() {
   const experiences = await client.fetch(EXPERIENCE_QUERY, {}, options);
 
-  console.log(experiences);
-
   return (
     <div className="flex flex-col gap-12 w-full">
       <Hero />

@@ -7,7 +7,7 @@ export const Hero = () => (
       Hello
     </h1>
     <div className="text-muted-foreground text-sm overflow-auto">
-      <p className="break-word max-w-lg">
+      <p className="break-word max-w-lg text-base">
         Based in Spokane Washington, I&apos;m a front-end developer passionate
         about building web apps that users love. When I&apos;m not coding, you
         can usually find me making music. I love exploring new ways to combine
