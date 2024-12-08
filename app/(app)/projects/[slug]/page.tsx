@@ -1,23 +1,25 @@
-// import { client } from "@/sanity/lib/client";
-// import { POST_QUERY } from "@/sanity/lib/queries";
-// import { notFound } from "next/navigation";
-
-// const options = { next: { revalidate: 60 } };
+import { client } from "@/sanity/lib/client";
+import { PROJECT_QUERY } from "@/sanity/lib/queries";
+import { notFound } from "next/navigation";
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{
+    slug: string;
+  }>;
 }
 
-export default async function Page({ params }: Props) {
-  //   const post = await client.fetch(POST_QUERY, await params, options);
+const options = { next: { revalidate: 60 } };
 
-  //   if (!post) {
-  //     notFound();
-  //   }
+export default async function ProjectPage({ params }: Props) {
+  const project = await client.fetch(PROJECT_QUERY, await params, options);
+
+  if (!project) {
+    notFound();
+  }
 
   return (
-    <main className="container mx-auto grid grid-cols-1 gap-6 p-12">
-      a project {(await params).slug}
-    </main>
+    <div className="flex flex-col gap-24">
+      <h1>{project.title}</h1>
+    </div>
   );
 }

@@ -1,18 +1,18 @@
 import { cn } from "@/lib/utils";
+import { urlFor } from "@/sanity/lib/image";
+import { type Project } from "@/sanity/types";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-interface Props {
-  pic: string;
-  tag: string;
-  title: string;
+interface Props extends Pick<Project, "tag" | "title"> {
   classname?: string;
+  mainImage: Project["mainImage"] | null;
 }
 
 const arrows = Array.from({ length: 6 }, (_, index) => index + 1);
 
-export const ProjectCard = ({ pic, classname, tag, title }: Props) => {
+export const ProjectCard = ({ mainImage, classname, tag, title }: Props) => {
   return (
     <Link
       href={`projects/${title}`}
@@ -21,15 +21,17 @@ export const ProjectCard = ({ pic, classname, tag, title }: Props) => {
         classname
       )}
     >
-      <div className="overflow-hidden rounded-md">
-        <Image
-          alt="me"
-          src={`/images/${pic}`}
-          width={0}
-          height={0}
-          sizes="100%"
-          className="aspect-square rounded-md w-full h-full transition-transform duration-300 group-hover:scale-105"
-        />
+      <div className="overflow-hidden rounded-md border">
+        {mainImage ? (
+          <Image
+            alt="me"
+            src={urlFor(mainImage).crop("left").auto("format").url()}
+            width={0}
+            height={0}
+            sizes="100%"
+            className="aspect-square object-cover rounded-md w-full h-full transition-transform duration-300 group-hover:scale-105"
+          />
+        ) : null}
       </div>
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-1.5">

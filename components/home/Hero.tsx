@@ -9,8 +9,8 @@ export const Hero = () => (
     </h1>
     <div className="text-muted-foreground text-sm overflow-auto">
       <p className="break-word max-w-lg text-base">
-        A passionate web designer with a knack for turning ideas into visually
-        stunning, user-friendly websites.
+        I&apos;m a front-end developer passionate about building web apps that
+        users love.
       </p>
     </div>
     <DottedLineFlexContainer>
