@@ -1,0 +1,7 @@
+export type FormState<T = unknown> = {
+  message: string;
+  fields?: Record<string, string>;
+  issues?: string[];
+  isError: boolean;
+  data?: T;
+};

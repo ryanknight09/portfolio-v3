@@ -1,4 +1,4 @@
-import { AnimatedButton } from "@/components/AnimatedButton";
+import { AnimatedLink } from "@/components/AnimatedLink";
 import { MapPin } from "lucide-react";
 import { DottedLine, DottedLineFlexContainer } from "../DottedLine";
 
@@ -8,9 +8,9 @@ export const Hero = () => (
       Hello Everyone! Im Ryan.
     </h1>
     <div className="text-muted-foreground text-sm overflow-auto">
-      <p className="break-word max-w-lg">
-        A passionate web designer with a knack for turning ideas into visually
-        stunning, user-friendly websites.
+      <p className="break-word max-w-lg text-base">
+        I&apos;m a front-end developer passionate about building web apps that
+        users love.
       </p>
     </div>
     <DottedLineFlexContainer>
@@ -22,9 +22,9 @@ export const Hero = () => (
           </p>
         </div>
       </DottedLine>
-      <AnimatedButton className="w-full md:max-w-max">
+      <AnimatedLink className="w-full md:max-w-max" href="about">
         More About Me
-      </AnimatedButton>
+      </AnimatedLink>
     </DottedLineFlexContainer>
   </section>
 );

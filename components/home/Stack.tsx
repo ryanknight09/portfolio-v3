@@ -1,6 +1,6 @@
 import { type TECHNOLOGY_QUERYResult } from "@/sanity/types";
 import Image from "next/image";
-import { AnimatedButton } from "../AnimatedButton";
+import { AnimatedLink } from "../AnimatedLink";
 import { DottedLine, DottedLineFlexContainer } from "../DottedLine";
 
 interface Props {
@@ -42,9 +42,9 @@ export const Stack = ({ stack }: Props) => {
       </ul>
       <DottedLineFlexContainer>
         <DottedLine />
-        <AnimatedButton className="w-full md:max-w-max">
+        <AnimatedLink className="w-full md:max-w-max" href="stacks">
           View All Stack
-        </AnimatedButton>
+        </AnimatedLink>
       </DottedLineFlexContainer>
     </section>
   );

@@ -11,13 +11,93 @@ export const TECHNOLOGY_QUERY =
 }`);
 
 export const EXPERIENCE_QUERY =
-  defineQuery(`*[_type == "workExperience" && defined(slug.current)][0...12]{
+  defineQuery(`*[_type == "workExperience" && defined(slug.current)]|order(startDate desc)[0...12]{
   _id,
   title,
   slug,
   mainImage,
   description,
   jobTitle,
+  startDate,
+  endDate,
+  isCurrent
+}`);
+
+export const PROJECTS_QUERY =
+  defineQuery(`*[_type == "project" && defined(slug.current)]|order(projectNumber desc)[0...12]{
+  _id,
+  title,
+  slug,
+  projectNumber,
+  tag,
+  body,
+  mainImage,
+  gallery,
+  publishedAt,
+  "categories": coalesce(
+    categories[]->{
+      _id,
+      slug,
+      title
+    },
+    []
+  )
+}`);
+
+export const TOP_THREE_PROJECTS_QUERY =
+  defineQuery(`*[_type == "project" && defined(slug.current) && projectNumber in [6,5,3]]|order(projectNumber desc){
+  _id,
+  title,
+  slug,
+  projectNumber,
+  body,
+  tag,
+  mainImage,
+  gallery,
+  publishedAt,
+  "categories": coalesce(
+    categories[]->{
+      _id,
+      slug,
+      title
+    },
+    []
+  )
+}`);
+
+export const PROJECT_QUERY =
+  defineQuery(`*[_type == "project" && slug.current == $slug][0]{
+  _id,
+  title,
+  body,
+  mainImage,
+  gallery[] {
+    asset-> {
+      _id,
+      url
+    }
+  },
+  publishedAt,
+  githubUrl, 
+  hostedUrl,
+  "categories": coalesce(
+    categories[]->{
+      _id,
+      slug,
+      title
+    },
+    []
+  ),
+  "technologies": coalesce(
+    technologies[]->{
+      _id,
+      slug,
+      title,
+      link,
+      tag,
+    },
+    []
+  )
 }`);
 
 export const POSTS_QUERY =
@@ -53,7 +133,6 @@ export const POST_QUERY =
   title,
   body,
   mainImage,
-  technology,
   publishedAt,
   "categories": coalesce(
     categories[]->{
