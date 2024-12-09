@@ -111,13 +111,6 @@ export type Project = {
     _key: string;
     [internalGroqTypeReferenceTo]?: "technology";
   }>;
-  categories?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }>;
   publishedAt?: string;
   body?: Array<{
     children?: Array<{
@@ -573,11 +566,7 @@ export type PROJECTS_QUERYResult = Array<{
     _key: string;
   }> | null;
   publishedAt: string | null;
-  categories: Array<{
-    _id: string;
-    slug: Slug | null;
-    title: string | null;
-  }> | Array<never>;
+  categories: Array<never> | null;
 }>;
 // Variable: TOP_THREE_PROJECTS_QUERY
 // Query: *[_type == "project" && defined(slug.current) && projectNumber in [6,5,3]]|order(projectNumber desc){  _id,  title,  slug,  projectNumber,  body,  tag,  mainImage,  gallery,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  )}
@@ -643,11 +632,7 @@ export type TOP_THREE_PROJECTS_QUERYResult = Array<{
     _key: string;
   }> | null;
   publishedAt: string | null;
-  categories: Array<{
-    _id: string;
-    slug: Slug | null;
-    title: string | null;
-  }> | Array<never>;
+  categories: Array<never> | null;
 }>;
 // Variable: PROJECT_QUERY
 // Query: *[_type == "project" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  gallery[] {    asset-> {      _id,      url    }  },  publishedAt,  githubUrl,   hostedUrl,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  "technologies": coalesce(    technologies[]->{      _id,      slug,      title,      link,      tag,    },    []  )}
@@ -705,11 +690,7 @@ export type PROJECT_QUERYResult = {
   publishedAt: string | null;
   githubUrl: null;
   hostedUrl: null;
-  categories: Array<{
-    _id: string;
-    slug: Slug | null;
-    title: string | null;
-  }> | Array<never>;
+  categories: Array<never> | null;
   technologies: Array<{
     _id: string;
     slug: Slug | null;

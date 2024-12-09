@@ -1,101 +1,81 @@
-"use client";
+// "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+// import { contactAction } from "@/app/actions/contactAction";
+// import { FormInput } from "@/components/form/FormInput";
+// import { FormTextArea } from "@/components/form/FormTextArea";
+// import { Button } from "@/components/ui/button";
+// import { Form } from "@/components/ui/form";
+// import { type ContactFormValues, contactFormResolver } from "@/schemas/contact";
+// import { useActionState } from "react";
+// import { useFormStatus } from "react-dom";
+// import { useForm } from "react-hook-form";
 
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  message: z.string().min(10, {
-    message: "Message must be at least 10 characters.",
-  }),
-});
+// function SubmitButton() {
+//   const { pending } = useFormStatus();
 
-export function ContactForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      message: "",
-    },
-  });
+//   return (
+//     <Button type="submit" size="lg" disabled={pending}>
+//       {pending ? "Sending..." : "Send Message"}
+//     </Button>
+//   );
+// }
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    // Here you would typically send the form data to your backend
-    console.log(values);
-  }
+// export function ContactForm() {
+//   const methods = useForm<ContactFormValues>({
+//     resolver: contactFormResolver,
+//     defaultValues: {
+//       name: "",
+//       email: "",
+//       message: "",
+//     },
+//   });
 
-  return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="Your name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="your.email@example.com" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <FormField
-          control={form.control}
-          name="message"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Message</FormLabel>
-              <FormControl>
-                <Textarea
-                  placeholder="Your message..."
-                  className="resize-none min-h-[200px]"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <div className="flex justify-end">
-          <Button type="submit" size="lg">
-            Send Message
-          </Button>
-        </div>
-      </form>
-    </Form>
-  );
-}
+//   const [state, formAction] = useActionState(contactAction, {});
+
+//   async function onSubmit(values: ContactFormValues) {
+//     await formAction(values);
+
+//     if (state.status === "success") {
+//       methods.reset();
+//     }
+//   }
+
+//   return (
+//     <Form {...methods}>
+//       <form
+//         onSubmit={methods.handleSubmit(onSubmit)}
+//         className="w-full space-y-8"
+//       >
+//         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+//           <FormInput label="Name" name="name" placeholder="Your name" />
+//           <FormInput
+//             label="Email"
+//             name="email"
+//             type="email"
+//             placeholder="your.email@example.com"
+//           />
+//         </div>
+//         <FormTextArea
+//           label="Message"
+//           name="message"
+//           placeholder="Your message..."
+//           className="resize-none min-h-[200px]"
+//         />
+//         <div className="flex flex-col space-y-4">
+//           {state.message && (
+//             <p
+//               className={`text-sm ${
+//                 state.status === "error" ? "text-red-500" : "text-green-500"
+//               }`}
+//             >
+//               {state.message}
+//             </p>
+//           )}
+//           <div className="flex justify-end">
+//             <SubmitButton />
+//           </div>
+//         </div>
+//       </form>
+//     </Form>
+//   );
+// }

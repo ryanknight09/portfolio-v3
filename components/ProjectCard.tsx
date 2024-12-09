@@ -8,24 +8,31 @@ import Link from "next/link";
 interface Props extends Pick<Project, "tag" | "title"> {
   classname?: string;
   mainImage: Project["mainImage"] | null;
+  slug?: string;
 }
 
 const arrows = Array.from({ length: 6 }, (_, index) => index + 1);
 
-export const ProjectCard = ({ mainImage, classname, tag, title }: Props) => {
+export const ProjectCard = ({
+  mainImage,
+  classname,
+  tag,
+  title,
+  slug,
+}: Props) => {
   return (
     <Link
-      href={`projects/${title}`}
+      href={`projects/${slug}`}
       className={cn(
         "flex flex-col gap-6 py-6 group cursor-pointer group relative overflow-hidden",
         classname
       )}
     >
-      <div className="overflow-hidden rounded-md border">
+      <div className="overflow-hidden rounded-md">
         {mainImage ? (
           <Image
             alt="me"
-            src={urlFor(mainImage).crop("left").auto("format").url()}
+            src={urlFor(mainImage).url()}
             width={0}
             height={0}
             sizes="100%"

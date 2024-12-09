@@ -10,6 +10,7 @@ export const projectType = defineType({
     defineField({
       name: "title",
       type: "string",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "alt",
@@ -27,6 +28,7 @@ export const projectType = defineType({
     defineField({
       name: "slug",
       type: "slug",
+      validation: (rule) => rule.required(),
       options: {
         source: "title",
       },
@@ -34,14 +36,17 @@ export const projectType = defineType({
     defineField({
       name: "tag",
       type: "string",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "projectNumber",
       type: "number",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "mainImage",
       type: "image",
+      validation: (rule) => rule.required(),
       options: {
         hotspot: true,
       },
@@ -50,11 +55,13 @@ export const projectType = defineType({
           name: "alt",
           type: "string",
           title: "Alternative text",
+          validation: (rule) => rule.required(),
         },
       ],
     }),
     defineField({
       name: "gallery",
+
       type: "array",
       of: [
         {
@@ -78,21 +85,19 @@ export const projectType = defineType({
     defineField({
       name: "technologies",
       type: "array",
+      validation: (rule) => rule.required(),
       of: [
         defineArrayMember({ type: "reference", to: { type: "technology" } }),
       ],
     }),
     defineField({
-      name: "categories",
-      type: "array",
-      of: [defineArrayMember({ type: "reference", to: { type: "category" } })],
-    }),
-    defineField({
       name: "publishedAt",
       type: "datetime",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "body",
+      validation: (rule) => rule.required(),
       type: "blockContent",
     }),
     defineField({

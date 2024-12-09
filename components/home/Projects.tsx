@@ -14,11 +14,12 @@ export const Projects = ({ projects }: Props) => (
       Recent Projects
     </h1>
     <div className="grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-3 gap-8">
-      {projects.map(({ _id, mainImage, title, tag }, index) => (
+      {projects.map(({ _id, mainImage, title, tag, slug }, index) => (
         <ProjectCard
           key={_id}
           mainImage={mainImage}
           tag={tag ?? ""}
+          slug={slug?.current ?? ""}
           title={title ?? ""}
           classname={cn(index === 2 && "hidden 3xl:flex")}
         />

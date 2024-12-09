@@ -1,4 +1,4 @@
-import { ContactForm } from "@/components/contact/ContactForm";
+// import { ContactForm } from "@/components/contact/ContactForm";
 
 export default function ContactPage() {
   return (
@@ -7,7 +7,7 @@ export default function ContactPage() {
         <h1 className="text-xl md:text-2xl max-w-64 md:max-w-sm lg:max-w-xl break-words">
           Get in Touch
         </h1>
-        <ContactForm />
+        {/* <ContactForm /> */}
       </div>
     </div>
   );

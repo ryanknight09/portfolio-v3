@@ -17,8 +17,6 @@ export default async function Page() {
   const topProjects = await client.fetch(TOP_THREE_PROJECTS_QUERY, {}, options);
   const stack = await client.fetch(TECHNOLOGY_QUERY, {}, options);
 
-  console.log({ topProjects });
-
   return (
     <div className="flex flex-col gap-24 w-full">
       <Hero />
