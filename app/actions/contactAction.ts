@@ -1,28 +1,49 @@
-// "use server";
+"use server";
 
-// import { type ContactFormValues } from "@/schemas/contact";
-// import { type FormState } from "@/types/FormState";
+import { contactSchema } from "@/schemas/contactSchema";
+import { type FormState } from "@/types/FormState";
+import { handleInvalidForm } from "@/utils/invalidFormValues";
+import { Resend } from "resend";
 
-// export async function contactAction(
-//   prevState: FormState,
-//   formData: ContactFormValues
-// ): Promise<FormState> {
-//   try {
-//     // Add a small delay to simulate server processing
-//     await new Promise((resolve) => setTimeout(resolve, 1000));
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-//     // TODO: Add your email sending logic here
-//     // For example, using resend, sendgrid, or other email service
-//     console.log("Form submitted:", formData);
+export async function contactAction(
+  prevState: FormState,
+  data: FormData
+): Promise<FormState> {
+  const formData = Object.fromEntries(data);
+  const parsed = contactSchema.safeParse(formData);
 
-//     return {
-//       message: "success",
-//       isError: false,
-//     };
-//   } catch (error) {
-//     return {
-//       status: error instanceof Error ? error.message : "Something went wrong",
-//       isError: true,
-//     };
-//   }
-// }
+  if (!parsed.success) {
+    return handleInvalidForm({ formData, parsed });
+  }
+
+  try {
+    resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL!,
+      to: process.env.RESEND_TO_EMAIL!,
+      subject: `${parsed.data.name} - ${parsed.data.email} Is Sending You A Message`,
+      html: `<p><strong>Email: </strong>${parsed.data.email}</p><p>${parsed.data.message}</p>`,
+    });
+  } catch (error) {
+    if (error instanceof Error) {
+      return {
+        message: error.message,
+        isError: true,
+        isSuccess: false,
+      };
+    }
+
+    return {
+      message: "Something went wrong",
+      isError: true,
+      isSuccess: false,
+    };
+  }
+
+  return {
+    message: "success",
+    isError: false,
+    isSuccess: true,
+  };
+}

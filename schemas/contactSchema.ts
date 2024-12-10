@@ -1,9 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
-export const contactFormSchema = z.object({
+export const contactSchema = z.object({
   name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
+    message: "Name is required.",
   }),
   email: z.string().email({
     message: "Please enter a valid email address.",
@@ -13,6 +13,6 @@ export const contactFormSchema = z.object({
   }),
 });
 
-export type ContactFormValues = z.infer<typeof contactFormSchema>;
+export type ContactFormValues = z.infer<typeof contactSchema>;
 
-export const contactFormResolver = zodResolver(contactFormSchema);
+export const contactFormResolver = zodResolver(contactSchema);
