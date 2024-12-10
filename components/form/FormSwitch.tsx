@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useFormContext } from 'react-hook-form';
 import {
+  FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-  FormControl,
-  FormDescription,
   FormMessage,
-} from '@/components/ui/form';
+} from "@/components/ui/form";
+import { useFormContext } from "react-hook-form";
 
-import { Switch } from '@/components/ui/switch';
+import { Switch } from "@/components/ui/switch";
 
 interface Props {
   label: string;
@@ -19,23 +19,17 @@ interface Props {
   className?: string;
 }
 
-export const FormSwitch = ({
-  label,
-  name,
-  description,
-  className,
-  ...rest
-}: Props) => {
+export const FormSwitch = ({ label, description, ...rest }: Props) => {
   const { control } = useFormContext();
 
   return (
     <FormField
       control={control}
-      name='marketing_emails'
+      name="marketing_emails"
       render={({ field }) => (
-        <FormItem className='flex flex-row items-center justify-between rounded-lg border p-4'>
-          <div className='space-y-0.5'>
-            <FormLabel className='text-base'>{label}</FormLabel>
+        <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+          <div className="space-y-0.5">
+            <FormLabel className="text-base">{label}</FormLabel>
             <FormDescription>{description}</FormDescription>
             <FormMessage />
           </div>

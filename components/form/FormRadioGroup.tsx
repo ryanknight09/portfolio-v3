@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import { useFormContext } from 'react-hook-form';
 import {
+  FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-  FormControl,
-  FormDescription,
   FormMessage,
-} from '@/components/ui/form';
+} from "@/components/ui/form";
+import { useFormContext } from "react-hook-form";
 
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { cn } from '@/lib/utils';
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { cn } from "@/lib/utils";
 
 interface Props {
   options: { value: string; description: string }[];
@@ -23,8 +23,6 @@ interface Props {
 
 export const FormRadioGroup = ({
   options,
-  label,
-  name,
   description,
   className,
   ...rest
@@ -34,27 +32,27 @@ export const FormRadioGroup = ({
   return (
     <FormField
       control={control}
-      name='type'
+      name="type"
       render={({ field }) => (
-        <FormItem className={cn('space-y-3', className)}>
+        <FormItem className={cn("space-y-3", className)}>
           <FormLabel>Notify me about...</FormLabel>
           <FormControl>
             <RadioGroup
               onValueChange={field.onChange}
               //   defaultValue={field.value}
-              className='flex flex-col space-y-1'
+              className="flex flex-col space-y-1"
               {...field}
               {...rest}
             >
               {options.map((option) => (
                 <FormItem
                   key={option.value}
-                  className='flex items-center space-x-3 space-y-0'
+                  className="flex items-center space-x-3 space-y-0"
                 >
                   <FormControl>
                     <RadioGroupItem value={option.value} />
                   </FormControl>
-                  <FormLabel className='font-normal'>
+                  <FormLabel className="font-normal">
                     {option.description}
                   </FormLabel>
                 </FormItem>
