@@ -71,12 +71,7 @@ export const PROJECT_QUERY =
   title,
   body,
   mainImage,
-  gallery[] {
-    asset-> {
-      _id,
-      url
-    }
-  },
+  imagesGallery,
   publishedAt,
   githubUrl, 
   hostedUrl,
@@ -97,7 +92,7 @@ export const PROJECT_QUERY =
       tag,
     },
     []
-  )
+  ),
 }`);
 
 export const POSTS_QUERY =

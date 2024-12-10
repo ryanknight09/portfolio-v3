@@ -73,6 +73,23 @@ body {
   }
 }
 
+@layer components {
+  .prose p,
+  .prose li::marker,
+  .prose li {
+    @apply text-muted-foreground;
+  }
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6,
+  .prose strong {
+    @apply text-foreground;
+  }
+}
+
 @layer utilities {
   .animate-pause {
     animation-play-state: paused;

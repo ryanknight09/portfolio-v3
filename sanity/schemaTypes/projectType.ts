@@ -60,27 +60,10 @@ export const projectType = defineType({
       ],
     }),
     defineField({
-      name: "gallery",
-
+      name: "imagesGallery",
+      title: "Images gallery",
       type: "array",
-      of: [
-        {
-          type: "image",
-          options: {
-            hotspot: true,
-          },
-          fields: [
-            {
-              name: "alt",
-              type: "string",
-              title: "Alternative text",
-            },
-          ],
-        },
-      ],
-      options: {
-        layout: "grid",
-      },
+      of: [{ type: "image" }],
     }),
     defineField({
       name: "technologies",
