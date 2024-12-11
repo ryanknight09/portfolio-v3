@@ -555,9 +555,9 @@ export type PROJECTS_QUERYResult = Array<{
   publishedAt: string | null;
   categories: Array<never> | null;
 }>;
-// Variable: TOP_THREE_PROJECTS_QUERY
-// Query: *[_type == "project" && defined(slug.current) && projectNumber in [6,5,3]]|order(projectNumber desc){  _id,  title,  slug,  projectNumber,  body,  tag,  mainImage,  gallery,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  )}
-export type TOP_THREE_PROJECTS_QUERYResult = Array<{
+// Variable: TOP_TWO_PROJECTS_QUERY
+// Query: *[_type == "project" && defined(slug.current) && projectNumber in [6,5]]|order(projectNumber desc){  _id,  title,  slug,  projectNumber,  body,  tag,  mainImage,  gallery,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  )}
+export type TOP_TWO_PROJECTS_QUERYResult = Array<{
   _id: string;
   title: string | null;
   slug: Slug | null;
@@ -830,7 +830,7 @@ declare module "@sanity/client" {
     "*[_type == \"technology\" && defined(slug.current)][]{\n  _id,\n  title,\n  slug,\n  description,\n  href,\n  tag\n}": TECHNOLOGY_QUERYResult;
     "*[_type == \"workExperience\" && defined(slug.current)]|order(startDate desc)[0...12]{\n  _id,\n  title,\n  slug,\n  mainImage,\n  description,\n  jobTitle,\n  startDate,\n  endDate,\n  isCurrent\n}": EXPERIENCE_QUERYResult;
     "*[_type == \"project\" && defined(slug.current)]|order(projectNumber desc)[0...12]{\n  _id,\n  title,\n  slug,\n  projectNumber,\n  tag,\n  body,\n  mainImage,\n  gallery,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}": PROJECTS_QUERYResult;
-    "*[_type == \"project\" && defined(slug.current) && projectNumber in [6,5,3]]|order(projectNumber desc){\n  _id,\n  title,\n  slug,\n  projectNumber,\n  body,\n  tag,\n  mainImage,\n  gallery,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}": TOP_THREE_PROJECTS_QUERYResult;
+    "*[_type == \"project\" && defined(slug.current) && projectNumber in [6,5]]|order(projectNumber desc){\n  _id,\n  title,\n  slug,\n  projectNumber,\n  body,\n  tag,\n  mainImage,\n  gallery,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}": TOP_TWO_PROJECTS_QUERYResult;
     "*[_type == \"project\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  imagesGallery,\n  publishedAt,\n  githubUrl, \n  hostedUrl,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  \"technologies\": coalesce(\n    technologies[]->{\n      _id,\n      slug,\n      title,\n      link,\n      tag,\n    },\n    []\n  ),\n}": PROJECT_QUERYResult;
     "*[_type == \"post\" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POSTS_QUERYResult;
     "*[_type == \"post\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": POSTS_SLUGS_QUERYResult;

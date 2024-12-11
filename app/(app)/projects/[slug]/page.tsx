@@ -6,6 +6,7 @@ import { urlFor } from "@/sanity/lib/image";
 import { PROJECT_QUERY } from "@/sanity/lib/queries";
 import { components } from "@/sanity/portableTextComponents";
 import { PortableText } from "next-sanity";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 interface Props {
@@ -39,6 +40,23 @@ export default async function ProjectPage({ params }: Props) {
       </section>
       <section className="md:pt-12 flex gap-12 flex-col">
         {<ProjectCarousel images={images} />}
+      </section>
+      <section className="md:pt-12 flex gap-12 flex-col">
+        <div className=" hidden md:flex justify-center items-center rounded-md bg-transparent shadow-[inset_0_0_120px_rgba(0,50,100,0.45)] h-72 lg:h-96">
+          <div className="md:flex md:justify-around items-center p-12 w-full flex-wrap">
+            {project.technologies.map((tech) => (
+              <Image
+                key={tech._id}
+                alt="stack image"
+                src={`/svg/${tech.slug?.current}.svg`}
+                width={0}
+                height={0}
+                sizes="100%"
+                className="aspect-square h-14 lg:h-20 w-auto"
+              />
+            ))}
+          </div>
+        </div>
       </section>
       <section className="md:pt-12 flex gap-12 flex-col lg:px-12">
         {project.body ? (

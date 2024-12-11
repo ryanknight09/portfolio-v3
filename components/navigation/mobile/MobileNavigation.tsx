@@ -27,7 +27,7 @@ export const MobileNavigation = () => {
       }}
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.35, ease: "easeInOut" }}
-      className="sticky top-0 flex items-center justify-between p-6 md:hidden"
+      className="sticky top-0 flex items-center justify-between p-6 md:hidden bg-background z-50"
     >
       <div className="flex gap-4 items-center">
         <Image

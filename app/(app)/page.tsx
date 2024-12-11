@@ -7,14 +7,14 @@ import { client } from "@/sanity/lib/client";
 import {
   EXPERIENCE_QUERY,
   TECHNOLOGY_QUERY,
-  TOP_THREE_PROJECTS_QUERY,
+  TOP_TWO_PROJECTS_QUERY,
 } from "@/sanity/lib/queries";
 
-const options = { next: { revalidate: 60 } };
+const options = { next: { revalidate: 5 } };
 
 export default async function Page() {
   const experiences = await client.fetch(EXPERIENCE_QUERY, {}, options);
-  const topProjects = await client.fetch(TOP_THREE_PROJECTS_QUERY, {}, options);
+  const topProjects = await client.fetch(TOP_TWO_PROJECTS_QUERY, {}, options);
   const stack = await client.fetch(TECHNOLOGY_QUERY, {}, options);
 
   return (

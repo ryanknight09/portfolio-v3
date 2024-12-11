@@ -23,16 +23,14 @@ export default async function Page() {
               className="bg-secondary w-full rounded-md p-6 flex flex-col gap-3"
             >
               <div className="flex items-center gap-6">
-                <div>
-                  <Image
-                    alt="stack image"
-                    src={`/svg/${slug?.current}.svg`}
-                    width={0}
-                    height={0}
-                    sizes="100%"
-                    className="aspect-square w-full h-14"
-                  />
-                </div>
+                <Image
+                  alt="stack image"
+                  src={`/svg/${slug?.current}.svg`}
+                  width={0}
+                  height={0}
+                  sizes="100%"
+                  className="aspect-square h-16 w-auto"
+                />
                 <div>
                   <p className="text-lg">{title}</p>
                   <p className="text-sm text-muted-foreground">{tag}</p>

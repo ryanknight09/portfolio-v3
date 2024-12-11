@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Carousel,
   CarouselContent,
@@ -19,10 +21,13 @@ export const ProjectCarousel = ({ images }: Props) => {
       }}
       className="px-12"
     >
-      <CarouselContent>
+      <CarouselContent className="-ml-12">
         {images.map((image) => (
-          <CarouselItem key={image} className="md:basis-1/2 3xl:basis-1/3">
-            <div className="overflow-hidden rounded-md border group">
+          <CarouselItem
+            key={image}
+            className="md:basis-1/2 3xl:basis-1/3 pl-12"
+          >
+            <div className="overflow-hidden rounded-md group">
               {
                 <Image
                   alt="me"
@@ -30,7 +35,7 @@ export const ProjectCarousel = ({ images }: Props) => {
                   width={0}
                   height={0}
                   sizes="100%"
-                  className="aspect-square object-scale-down rounded-md w-full h-full transition-transform duration-300 group-hover:scale-105"
+                  className="aspect-square object-scale-down rounded-md w-full h-full transition-transform duration-300 group-hover:scale-105  filter brightness-95"
                 />
               }
             </div>

@@ -28,7 +28,8 @@ export const ProjectCard = ({
         classname
       )}
     >
-      <div className="overflow-hidden rounded-md">
+      {/* <div className="overflow-hidden rounded-md bg-transparent p-8 shadow-[inset_0_0_120px_0px_rgba(0,0,100,0.5)]"> */}
+      <div className="overflow-hidden rounded-md bg-transparent py-4">
         {mainImage ? (
           <Image
             alt="me"
@@ -36,12 +37,12 @@ export const ProjectCard = ({
             width={0}
             height={0}
             sizes="100%"
-            className="aspect-square object-cover rounded-md w-full h-full transition-transform duration-300 group-hover:scale-105"
+            className="shadow-xl object-cover rounded-md w-full h-full transition-transform duration-300 group-hover:scale-105"
           />
         ) : null}
       </div>
       <div className="flex justify-between items-center">
-        <div className="flex flex-col gap-1.5">
+        <div className="flex flex-col gap-1.5 ml-11">
           <p className="text-primary text-xs uppercase">{tag}</p>
           <h3 className="text-lg">{title}</h3>
         </div>

@@ -4,7 +4,7 @@ import { DesktopMenu } from "./DesktopMenu";
 export const DesktopNav = () => {
   return (
     <nav className="flex-[0 0 auto] hidden md:flex flex-col gap-12 p-6 xl:p-12 w-auto border-r sticky top-0 h-screen">
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-6">
         <div className="relative w-[120px] h-[120px] xl:w-[192px] xl:h-[192px]">
           <Image
             alt="me"

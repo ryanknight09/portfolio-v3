@@ -44,8 +44,8 @@ export const PROJECTS_QUERY =
   )
 }`);
 
-export const TOP_THREE_PROJECTS_QUERY =
-  defineQuery(`*[_type == "project" && defined(slug.current) && projectNumber in [6,5,3]]|order(projectNumber desc){
+export const TOP_TWO_PROJECTS_QUERY =
+  defineQuery(`*[_type == "project" && defined(slug.current) && projectNumber in [6,5]]|order(projectNumber desc){
   _id,
   title,
   slug,
