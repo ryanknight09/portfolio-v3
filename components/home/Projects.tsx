@@ -21,7 +21,10 @@ export const Projects = ({ projects }: Props) => (
           tag={tag ?? ""}
           slug={slug?.current ?? ""}
           title={title ?? ""}
-          classname={cn(index === 2 && "hidden 3xl:flex")}
+          classname={cn(
+            index === 2 && "hidden 3xl:flex"
+            // "rounded-lg hover:shadow-[inset_0_0_120px_rgba(0,50,100,0.50)] shadow-primary transition-all duration-300"
+          )}
         />
       ))}
     </div>
@@ -33,5 +36,3 @@ export const Projects = ({ projects }: Props) => (
     </DottedLineFlexContainer>
   </section>
 );
-
-//3xl:grid-cols-3

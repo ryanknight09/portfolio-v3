@@ -16,6 +16,7 @@ export const ProjectsGrid = ({ projects }: Props) => (
             tag={tag ?? ""}
             title={title ?? ""}
             slug={slug?.current ?? ""}
+            classname="rounded-lg hover:shadow-[inset_0_0_120px_rgba(0,50,100,0.50)] shadow-primary transition-all duration-300"
           />
         );
       })}

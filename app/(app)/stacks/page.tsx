@@ -2,6 +2,7 @@ import { Separator } from "@/components/ui/separator";
 import { client } from "@/sanity/lib/client";
 import { TECHNOLOGY_QUERY } from "@/sanity/lib/queries";
 import Image from "next/image";
+import Link from "next/link";
 
 const options = { next: { revalidate: 10 } };
 
@@ -17,10 +18,12 @@ export default async function Page() {
       </section>
       <section className="md:pt-12 flex gap-12 flex-col">
         <div className="grid gap-8 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5">
-          {stack.map(({ _id, slug, title, tag, description }) => (
-            <div
+          {stack.map(({ _id, slug, title, tag, description, href }) => (
+            <Link
+              href={href || ""}
+              target="_blank"
               key={_id}
-              className="bg-secondary w-full rounded-md p-6 flex flex-col gap-3"
+              className="bg-secondary w-full rounded-md p-6 flex flex-col gap-3 hover:bg-accent hover:ring-2 hover:ring-primary ring-inset hover:shadow-[inset_0_0_60px_rgba(0,50,100,0.50)] shadow-primary transition-all duration-300"
             >
               <div className="flex items-center gap-6">
                 <Image
@@ -41,7 +44,7 @@ export default async function Page() {
                 className="h-6 bg-white/20 ml-4"
               />
               <p className="text-muted-foreground text-sm">{description}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </section>

@@ -10,7 +10,7 @@ import {
   TOP_TWO_PROJECTS_QUERY,
 } from "@/sanity/lib/queries";
 
-const options = { next: { revalidate: 5 } };
+const options = { next: { revalidate: 60 } };
 
 export default async function Page() {
   const experiences = await client.fetch(EXPERIENCE_QUERY, {}, options);

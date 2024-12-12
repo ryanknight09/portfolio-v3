@@ -43,7 +43,7 @@ export const Stack = ({ stack }: Props) => {
       <DottedLineFlexContainer>
         <DottedLine />
         <AnimatedLink className="w-full md:max-w-max" href="stacks">
-          View All Stack
+          View All Stacks
         </AnimatedLink>
       </DottedLineFlexContainer>
     </section>

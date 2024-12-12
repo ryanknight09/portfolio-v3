@@ -42,7 +42,7 @@ export default async function ProjectPage({ params }: Props) {
         {<ProjectCarousel images={images} />}
       </section>
       <section className="md:pt-12 flex gap-12 flex-col">
-        <div className=" hidden md:flex justify-center items-center rounded-md bg-transparent shadow-[inset_0_0_120px_rgba(0,50,100,0.45)] h-72 lg:h-96">
+        <div className=" hidden md:flex justify-center items-center rounded-md bg-transparent shadow-[inset_0_0_120px_rgba(0,50,100,0.50)] h-72 lg:h-96">
           <div className="md:flex md:justify-around items-center p-12 w-full flex-wrap">
             {project.technologies.map((tech) => (
               <Image
