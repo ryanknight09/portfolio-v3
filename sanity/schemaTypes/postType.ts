@@ -12,6 +12,10 @@ export const postType = defineType({
       type: "string",
     }),
     defineField({
+      name: "description",
+      type: "string",
+    }),
+    defineField({
       name: "alt",
       type: "string",
       title: "Alternative text",

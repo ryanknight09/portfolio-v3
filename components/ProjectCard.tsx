@@ -28,7 +28,6 @@ export const ProjectCard = ({
         classname
       )}
     >
-      {/* <div className="overflow-hidden rounded-md bg-transparent p-8 shadow-[inset_0_0_120px_0px_rgba(0,0,100,0.5)]"> */}
       <div className="overflow-hidden rounded-md bg-transparent py-4">
         {mainImage ? (
           <Image

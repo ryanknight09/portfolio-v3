@@ -23,8 +23,9 @@ export default async function Page() {
               href={href || ""}
               target="_blank"
               key={_id}
-              className="bg-secondary w-full rounded-md p-6 flex flex-col gap-3 hover:bg-accent hover:ring-2 hover:ring-primary ring-inset hover:shadow-[inset_0_0_60px_rgba(0,50,100,0.50)] shadow-primary transition-all duration-300"
+              className="relative bg-secondary w-full rounded-md p-6 flex flex-col gap-3 hover:bg-accent hover:shadow-[inset_0_0_60px_rgba(0,50,100,0.50)] shadow-primary transition-all duration-300"
             >
+              <div className="w-full h-full absolute top-0 left-0 rounded-md animate-pulse hover:ring-2 hover:ring-primary ring-inset" />
               <div className="flex items-center gap-6">
                 <Image
                   alt="stack image"

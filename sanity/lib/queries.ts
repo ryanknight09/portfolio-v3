@@ -73,8 +73,10 @@ export const PROJECT_QUERY =
   mainImage,
   imagesGallery,
   publishedAt,
-  githubUrl, 
-  hostedUrl,
+  hostingIssue,
+  isPrivate,
+  githubHref,
+  hostedHref,
   "categories": coalesce(
     categories[]->{
       _id,
@@ -88,7 +90,7 @@ export const PROJECT_QUERY =
       _id,
       slug,
       title,
-      link,
+      href,
       tag,
     },
     []
@@ -99,6 +101,7 @@ export const POSTS_QUERY =
   defineQuery(`*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{
   _id,
   title,
+  description,
   slug,
   body,
   mainImage,
@@ -126,6 +129,8 @@ export const POST_QUERY =
   defineQuery(`*[_type == "post" && slug.current == $slug][0]{
   _id,
   title,
+  description,
+  slug,
   body,
   mainImage,
   publishedAt,

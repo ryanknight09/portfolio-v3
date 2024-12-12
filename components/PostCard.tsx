@@ -1,42 +1,53 @@
-import { Author } from "@/components/Author";
-import { Categories } from "@/components/Categories";
-import { PublishedAt } from "@/components/PublishedAt";
 import { urlFor } from "@/sanity/lib/image";
 import { type POSTS_QUERYResult } from "@/sanity/types";
+import dayjs from "dayjs";
+import { Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
+import { Badge } from "./ui/badge";
 type Props = POSTS_QUERYResult[0];
 
 export function PostCard(props: Props) {
-  const { title, author, mainImage, publishedAt, categories } = props;
+  const { title, mainImage, publishedAt, description, categories } = props;
 
   return (
-    <Link className="group" href={`/posts/${props.slug!.current}`}>
-      <article className="flex flex-col-reverse gap-4 md:grid md:grid-cols-12 md:gap-0">
-        <div className="md:col-span-2 md:pt-1">
-          <Categories categories={categories} />
+    <Link
+      className="relative bg-secondary hover:bg-accent rounded-md p-6 hover:shadow-[inset_0_0_40px_rgba(0,50,100,0.35)] shadow-primary transition-all duration-300"
+      href={`/posts/${props.slug!.current}`}
+    >
+      <div className="w-full h-full absolute top-0 left-0 rounded-md animate-pulse hover:ring-2 hover:ring-primary ring-inset" />
+      <article className="grid gap-4 grid-cols-1">
+        {mainImage ? (
+          <Image
+            src={urlFor(mainImage).url()}
+            width={0}
+            height={0}
+            sizes="100%"
+            alt={mainImage.alt || title || ""}
+            className="rounded-sm border w-full"
+          />
+        ) : null}
+        <div className="flex items-center flex-wrap gap-2">
+          {categories.map((category) => (
+            <Badge
+              variant="outline"
+              className="border-primary rounded-md px-2 max-w-max"
+              key={category._id}
+            >
+              {category.title}
+            </Badge>
+          ))}
         </div>
-        <div className="md:col-span-5 md:w-full">
-          <h2 className="text-2xl text-pretty font-semibold text-slate-800 group-hover:text-pink-600 transition-colors relative">
-            <span className="relative z-[1]">{title}</span>
-            <span className="bg-pink-50 z-0 absolute inset-0 rounded-lg opacity-0 transition-all group-hover:opacity-100 group-hover:scale-y-110 group-hover:scale-x-105 scale-75" />
-          </h2>
-          <div className="flex items-center mt-2 md:mt-6 gap-x-6">
-            <Author author={author} />
-            <PublishedAt publishedAt={publishedAt} />
+        <h3 className="text font-semibold line-clamp-2">{title}</h3>
+        <p className="text-muted-foreground line-clamp-2">{description}</p>
+        {publishedAt ? (
+          <div className="flex items-center gap-2">
+            <Clock className="text-primary w-4 h-4" />
+            <p className="text-sm text-muted-foreground">
+              {dayjs(publishedAt).format("D MMMM YYYY")}
+            </p>
           </div>
-        </div>
-        <div className="md:col-start-9 md:col-span-4 rounded-lg overflow-hidden flex">
-          {mainImage ? (
-            <Image
-              src={urlFor(mainImage).width(400).height(200).url()}
-              width={400}
-              height={200}
-              alt={mainImage.alt || title || ""}
-            />
-          ) : null}
-        </div>
+        ) : null}
       </article>
     </Link>
   );

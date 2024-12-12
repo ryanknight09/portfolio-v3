@@ -141,6 +141,8 @@ export type Project = {
     _type: "image";
     _key: string;
   }>;
+  isPrivate?: boolean;
+  hostingIssue?: boolean;
   hostedHref?: string;
   githubHref?: string;
 };
@@ -260,6 +262,7 @@ export type Post = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  description?: string;
   alt?: string;
   slug?: Slug;
   author?: {
@@ -610,7 +613,7 @@ export type TOP_TWO_PROJECTS_QUERYResult = Array<{
   categories: Array<never> | null;
 }>;
 // Variable: PROJECT_QUERY
-// Query: *[_type == "project" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  imagesGallery,  publishedAt,  githubUrl,   hostedUrl,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  "technologies": coalesce(    technologies[]->{      _id,      slug,      title,      link,      tag,    },    []  ),}
+// Query: *[_type == "project" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  imagesGallery,  publishedAt,  hostingIssue,  isPrivate,  githubHref,  hostedHref,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  "technologies": coalesce(    technologies[]->{      _id,      slug,      title,      href,      tag,    },    []  ),}
 export type PROJECT_QUERYResult = {
   _id: string;
   title: string | null;
@@ -669,22 +672,25 @@ export type PROJECT_QUERYResult = {
     _key: string;
   }> | null;
   publishedAt: string | null;
-  githubUrl: null;
-  hostedUrl: null;
+  hostingIssue: boolean | null;
+  isPrivate: boolean | null;
+  githubHref: string | null;
+  hostedHref: string | null;
   categories: Array<never> | null;
   technologies: Array<{
     _id: string;
     slug: Slug | null;
     title: string | null;
-    link: null;
+    href: string | null;
     tag: string | null;
   }> | Array<never>;
 } | null;
 // Variable: POSTS_QUERY
-// Query: *[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{  _id,  title,  slug,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
+// Query: *[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{  _id,  title,  description,  slug,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
 export type POSTS_QUERYResult = Array<{
   _id: string;
   title: string | null;
+  description: string | null;
   slug: Slug | null;
   body: Array<{
     children?: Array<{
@@ -755,10 +761,12 @@ export type POSTS_SLUGS_QUERYResult = Array<{
   slug: string | null;
 }>;
 // Variable: POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
+// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  description,  slug,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
 export type POST_QUERYResult = {
   _id: string;
   title: string | null;
+  description: string | null;
+  slug: Slug | null;
   body: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -831,9 +839,9 @@ declare module "@sanity/client" {
     "*[_type == \"workExperience\" && defined(slug.current)]|order(startDate desc)[0...12]{\n  _id,\n  title,\n  slug,\n  mainImage,\n  description,\n  jobTitle,\n  startDate,\n  endDate,\n  isCurrent\n}": EXPERIENCE_QUERYResult;
     "*[_type == \"project\" && defined(slug.current)]|order(projectNumber desc)[0...12]{\n  _id,\n  title,\n  slug,\n  projectNumber,\n  tag,\n  body,\n  mainImage,\n  gallery,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}": PROJECTS_QUERYResult;
     "*[_type == \"project\" && defined(slug.current) && projectNumber in [6,5]]|order(projectNumber desc){\n  _id,\n  title,\n  slug,\n  projectNumber,\n  body,\n  tag,\n  mainImage,\n  gallery,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}": TOP_TWO_PROJECTS_QUERYResult;
-    "*[_type == \"project\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  imagesGallery,\n  publishedAt,\n  githubUrl, \n  hostedUrl,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  \"technologies\": coalesce(\n    technologies[]->{\n      _id,\n      slug,\n      title,\n      link,\n      tag,\n    },\n    []\n  ),\n}": PROJECT_QUERYResult;
-    "*[_type == \"post\" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POSTS_QUERYResult;
+    "*[_type == \"project\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  imagesGallery,\n  publishedAt,\n  hostingIssue,\n  isPrivate,\n  githubHref,\n  hostedHref,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  \"technologies\": coalesce(\n    technologies[]->{\n      _id,\n      slug,\n      title,\n      href,\n      tag,\n    },\n    []\n  ),\n}": PROJECT_QUERYResult;
+    "*[_type == \"post\" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  description,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POSTS_QUERYResult;
     "*[_type == \"post\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": POSTS_SLUGS_QUERYResult;
-    "*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POST_QUERYResult;
+    "*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  title,\n  description,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POST_QUERYResult;
   }
 }

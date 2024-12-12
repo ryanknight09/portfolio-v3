@@ -84,6 +84,21 @@ export const projectType = defineType({
       type: "blockContent",
     }),
     defineField({
+      name: "isPrivate",
+      title: "Private",
+      type: "boolean",
+      description: "If the repository is private, will display a warning",
+      initialValue: false,
+    }),
+    defineField({
+      name: "hostingIssue",
+      title: "Hosting Issue",
+      type: "boolean",
+      description:
+        "If there is any issue with the hosted project, will display a warning",
+      initialValue: false,
+    }),
+    defineField({
       title: "Hosted Url",
       name: "hostedHref",
       type: "url",
