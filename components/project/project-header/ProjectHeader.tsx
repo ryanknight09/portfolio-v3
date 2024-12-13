@@ -8,6 +8,7 @@ interface Props {
   isPrivate: boolean | null;
   githubHref: string | null;
   hostedHref: string | null;
+  hostingIssue: boolean | null;
 }
 
 export const ProjectHeader = ({
@@ -15,6 +16,7 @@ export const ProjectHeader = ({
   isPrivate,
   githubHref,
   hostedHref,
+  hostingIssue,
 }: Props) => {
   return (
     <FadeUpDiv className="flex gap-12 flex-col">
@@ -25,7 +27,7 @@ export const ProjectHeader = ({
         <div className="flex gap-6 items-center">
           <PrivateRepository isPrivate={isPrivate} />
           <GithubLink githubHref={githubHref} />
-          <HostedLink hostedHref={hostedHref} />
+          <HostedLink hostedHref={hostedHref} hostingIssue={hostingIssue} />
         </div>
       </div>
     </FadeUpDiv>

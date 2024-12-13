@@ -2,10 +2,16 @@ import { cn } from "@/lib/utils";
 import { OpenInNewWindowIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 
-export const HostedLink = ({ hostedHref }: { hostedHref: string | null }) => (
+export const HostedLink = ({
+  hostedHref,
+  hostingIssue,
+}: {
+  hostedHref: string | null;
+  hostingIssue: boolean | null;
+}) => (
   <div
     className={cn(
-      hostedHref &&
+      hostingIssue &&
         "flex gap-6 items-center border border-primary/50 rounded-2xl px-4 py-1.5"
     )}
   >
@@ -14,7 +20,7 @@ export const HostedLink = ({ hostedHref }: { hostedHref: string | null }) => (
         <OpenInNewWindowIcon className="h-6 w-auto" />
       </Link>
     )}
-    {hostedHref && (
+    {hostingIssue && (
       <p className="text-primary font-semibold">
         * See description for hosting issue.
       </p>

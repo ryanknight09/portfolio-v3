@@ -5,7 +5,7 @@ export const PrivateRepository = ({
 }: {
   isPrivate: boolean | null;
 }) => {
-  if (isPrivate) return null;
+  if (!isPrivate) return null;
 
   return (
     <div
