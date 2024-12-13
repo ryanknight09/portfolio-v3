@@ -9,6 +9,13 @@ import {
   TECHNOLOGY_QUERY,
   TOP_TWO_PROJECTS_QUERY,
 } from "@/sanity/lib/queries";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Ryan's Portfolio - Web Developer & Designer",
+  description:
+    "Welcome to Ryan's portfolio showcasing web development and design projects, skills, and experiences.",
+};
 
 const options = { next: { revalidate: 60 } };
 

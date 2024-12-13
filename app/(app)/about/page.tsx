@@ -5,8 +5,15 @@ import { Connect } from "@/components/Connect";
 import { Stack } from "@/components/home/Stack";
 import { client } from "@/sanity/lib/client";
 import { EXPERIENCE_QUERY, TECHNOLOGY_QUERY } from "@/sanity/lib/queries";
+import type { Metadata } from "next";
 
-const options = { next: { revalidate: 10 } };
+export const metadata: Metadata = {
+  title: "About Ryan Knight - Web Developer & Designer",
+  description:
+    "Learn about Ryan Knight's journey, skills, and experiences in web development and design.",
+};
+
+const options = { next: { revalidate: 60 } };
 
 export default async function Page() {
   const experiences = await client.fetch(EXPERIENCE_QUERY, {}, options);

@@ -1,6 +1,7 @@
 import { Post } from "@/components/post/Post";
 import { client } from "@/sanity/lib/client";
 import { POST_QUERY } from "@/sanity/lib/queries";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 const options = { next: { revalidate: 60 } };
@@ -21,4 +22,22 @@ export default async function Page({ params }: Props) {
       <Post {...post} />
     </main>
   );
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = await client.fetch(POST_QUERY, await params, options);
+
+  if (!post) {
+    return {
+      title: "Post Not Found",
+      description: "The requested blog post could not be found.",
+    };
+  }
+
+  return {
+    title: `${post.title} - Ryan Knight's Blog`,
+    description:
+      post.description ||
+      "Read this insightful article about web development and design on Ryan Knight's blog.",
+  };
 }

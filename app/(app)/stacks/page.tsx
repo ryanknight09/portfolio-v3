@@ -2,7 +2,15 @@ import { Stacks } from "@/components/stacks/Stacks";
 import { client } from "@/sanity/lib/client";
 import { TECHNOLOGY_QUERY } from "@/sanity/lib/queries";
 
-const options = { next: { revalidate: 10 } };
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Tech Stack - Ryan Knight's Development Tools",
+  description:
+    "Discover the technologies and tools Ryan Knight uses to build modern web applications.",
+};
+
+const options = { next: { revalidate: 60 } };
 
 export default async function Page() {
   const stack = await client.fetch(TECHNOLOGY_QUERY, {}, options);

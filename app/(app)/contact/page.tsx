@@ -2,6 +2,14 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import Image from "next/image";
 import Link from "next/link";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Ryan Knight - Web Developer & Designer",
+  description:
+    "Get in touch with Ryan Knight to discuss web development and design opportunities, collaborations, or projects.",
+};
+
 export default function ContactPage() {
   return (
     <div className="flex flex-col gap-24 w-full">

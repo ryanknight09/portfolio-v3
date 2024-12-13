@@ -1,6 +1,13 @@
 import { ProjectsGrid } from "@/components/ProjectsGrid";
 import { client } from "@/sanity/lib/client";
 import { PROJECTS_QUERY } from "@/sanity/lib/queries";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Ryan's Projects - Web Developer & Designer",
+  description:
+    "Explore Ryan Knight's projects showcasing skills in web development and design.",
+};
 
 const options = { next: { revalidate: 60 } };
 
