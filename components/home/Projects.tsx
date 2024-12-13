@@ -1,5 +1,5 @@
 import { AnimatedLink } from "@/components/AnimatedLink";
-import { ProjectCard } from "@/components/ProjectCard";
+import { ProjectCard } from "@/components/project-card/ProjectCard";
 import { cn } from "@/lib/utils";
 import { type TOP_TWO_PROJECTS_QUERYResult } from "@/sanity/types";
 import { FadeUpDiv } from "../Animation";
@@ -15,13 +15,10 @@ export const Projects = ({ projects }: Props) => (
       Recent Projects
     </h1>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {projects.map(({ _id, mainImage, title, tag, slug }, index) => (
+      {projects.map((project, index) => (
         <ProjectCard
-          key={_id}
-          mainImage={mainImage}
-          tag={tag ?? ""}
-          slug={slug?.current ?? ""}
-          title={title ?? ""}
+          key={project._id}
+          {...project}
           classname={cn(index === 2 && "hidden 3xl:flex")}
         />
       ))}

@@ -1,7 +1,7 @@
-import { Author } from "@/components/Author";
 import { components } from "@/sanity/portableTextComponents";
 import { type POST_QUERYResult } from "@/sanity/types";
 import { PortableText } from "next-sanity";
+import { Author } from "./Author";
 import { PostCategories } from "./PostCategories";
 import { PostImage } from "./PostImage";
 import { PostPublishedAt } from "./PostPublishedAt";

@@ -1,4 +1,4 @@
-import { PostCard } from "@/components/PostCard";
+import { PostCard } from "@/components/post/PostCard";
 import { client } from "@/sanity/lib/client";
 import { POSTS_QUERY } from "@/sanity/lib/queries";
 

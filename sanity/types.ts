@@ -74,12 +74,12 @@ export type Project = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
+  title: string;
   alt?: string;
-  slug?: Slug;
-  tag?: string;
-  projectNumber?: number;
-  mainImage?: {
+  slug: Slug;
+  tag: string;
+  projectNumber: number;
+  mainImage: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -88,7 +88,7 @@ export type Project = {
     };
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt?: string;
+    alt: string;
     _type: "image";
   };
   imagesGallery?: Array<{
@@ -103,15 +103,15 @@ export type Project = {
     _type: "image";
     _key: string;
   }>;
-  technologies?: Array<{
+  technologies: Array<{
     _ref: string;
     _type: "reference";
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "technology";
   }>;
-  publishedAt?: string;
-  body?: Array<{
+  publishedAt: string;
+  body: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -375,7 +375,7 @@ export type Category = {
 
 export type Slug = {
   _type: "slug";
-  current?: string;
+  current: string;
   source?: string;
 };
 
@@ -508,10 +508,10 @@ export type EXPERIENCE_QUERYResult = Array<{
 // Query: *[_type == "project" && defined(slug.current)]|order(projectNumber desc)[0...12]{  _id,  title,  slug,  projectNumber,  tag,  body,  mainImage,  gallery,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  )}
 export type PROJECTS_QUERYResult = Array<{
   _id: string;
-  title: string | null;
-  slug: Slug | null;
-  projectNumber: number | null;
-  tag: string | null;
+  title: string;
+  slug: Slug;
+  projectNumber: number;
+  tag: string;
   body: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -541,7 +541,7 @@ export type PROJECTS_QUERYResult = Array<{
     alt?: string;
     _type: "image";
     _key: string;
-  }> | null;
+  }>;
   mainImage: {
     asset?: {
       _ref: string;
@@ -551,20 +551,20 @@ export type PROJECTS_QUERYResult = Array<{
     };
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt?: string;
+    alt: string;
     _type: "image";
-  } | null;
+  };
   gallery: null;
-  publishedAt: string | null;
+  publishedAt: string;
   categories: Array<never> | null;
 }>;
 // Variable: TOP_TWO_PROJECTS_QUERY
 // Query: *[_type == "project" && defined(slug.current) && projectNumber in [6,5]]|order(projectNumber desc){  _id,  title,  slug,  projectNumber,  body,  tag,  mainImage,  gallery,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  )}
 export type TOP_TWO_PROJECTS_QUERYResult = Array<{
   _id: string;
-  title: string | null;
-  slug: Slug | null;
-  projectNumber: number | null;
+  title: string;
+  slug: Slug;
+  projectNumber: number;
   body: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -594,8 +594,8 @@ export type TOP_TWO_PROJECTS_QUERYResult = Array<{
     alt?: string;
     _type: "image";
     _key: string;
-  }> | null;
-  tag: string | null;
+  }>;
+  tag: string;
   mainImage: {
     asset?: {
       _ref: string;
@@ -605,18 +605,18 @@ export type TOP_TWO_PROJECTS_QUERYResult = Array<{
     };
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt?: string;
+    alt: string;
     _type: "image";
-  } | null;
+  };
   gallery: null;
-  publishedAt: string | null;
+  publishedAt: string;
   categories: Array<never> | null;
 }>;
 // Variable: PROJECT_QUERY
-// Query: *[_type == "project" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  imagesGallery,  publishedAt,  hostingIssue,  isPrivate,  githubHref,  hostedHref,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  "technologies": coalesce(    technologies[]->{      _id,      slug,      title,      href,      tag,    },    []  ),}
+// Query: *[_type == "project" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  imagesGallery,  publishedAt,  hostingIssue,  isPrivate,  githubHref,  hostedHref,  "technologies": coalesce(    technologies[]->{      _id,      slug,      title,      href,      tag,    },    []  ),}
 export type PROJECT_QUERYResult = {
   _id: string;
-  title: string | null;
+  title: string;
   body: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -646,7 +646,7 @@ export type PROJECT_QUERYResult = {
     alt?: string;
     _type: "image";
     _key: string;
-  }> | null;
+  }>;
   mainImage: {
     asset?: {
       _ref: string;
@@ -656,9 +656,9 @@ export type PROJECT_QUERYResult = {
     };
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt?: string;
+    alt: string;
     _type: "image";
-  } | null;
+  };
   imagesGallery: Array<{
     asset?: {
       _ref: string;
@@ -671,12 +671,11 @@ export type PROJECT_QUERYResult = {
     _type: "image";
     _key: string;
   }> | null;
-  publishedAt: string | null;
+  publishedAt: string;
   hostingIssue: boolean | null;
   isPrivate: boolean | null;
   githubHref: string | null;
   hostedHref: string | null;
-  categories: Array<never> | null;
   technologies: Array<{
     _id: string;
     slug: Slug | null;
@@ -839,7 +838,7 @@ declare module "@sanity/client" {
     "*[_type == \"workExperience\" && defined(slug.current)]|order(startDate desc)[0...12]{\n  _id,\n  title,\n  slug,\n  mainImage,\n  description,\n  jobTitle,\n  startDate,\n  endDate,\n  isCurrent\n}": EXPERIENCE_QUERYResult;
     "*[_type == \"project\" && defined(slug.current)]|order(projectNumber desc)[0...12]{\n  _id,\n  title,\n  slug,\n  projectNumber,\n  tag,\n  body,\n  mainImage,\n  gallery,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}": PROJECTS_QUERYResult;
     "*[_type == \"project\" && defined(slug.current) && projectNumber in [6,5]]|order(projectNumber desc){\n  _id,\n  title,\n  slug,\n  projectNumber,\n  body,\n  tag,\n  mainImage,\n  gallery,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}": TOP_TWO_PROJECTS_QUERYResult;
-    "*[_type == \"project\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  imagesGallery,\n  publishedAt,\n  hostingIssue,\n  isPrivate,\n  githubHref,\n  hostedHref,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  \"technologies\": coalesce(\n    technologies[]->{\n      _id,\n      slug,\n      title,\n      href,\n      tag,\n    },\n    []\n  ),\n}": PROJECT_QUERYResult;
+    "*[_type == \"project\" && slug.current == $slug][0]{\n  _id,\n  title,\n  body,\n  mainImage,\n  imagesGallery,\n  publishedAt,\n  hostingIssue,\n  isPrivate,\n  githubHref,\n  hostedHref,\n  \"technologies\": coalesce(\n    technologies[]->{\n      _id,\n      slug,\n      title,\n      href,\n      tag,\n    },\n    []\n  ),\n}": PROJECT_QUERYResult;
     "*[_type == \"post\" && defined(slug.current)]|order(publishedAt desc)[0...12]{\n  _id,\n  title,\n  description,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POSTS_QUERYResult;
     "*[_type == \"post\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": POSTS_SLUGS_QUERYResult;
     "*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  title,\n  description,\n  slug,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  ),\n  author->{\n    name,\n    image\n  }\n}": POST_QUERYResult;

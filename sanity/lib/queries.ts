@@ -77,14 +77,6 @@ export const PROJECT_QUERY =
   isPrivate,
   githubHref,
   hostedHref,
-  "categories": coalesce(
-    categories[]->{
-      _id,
-      slug,
-      title
-    },
-    []
-  ),
   "technologies": coalesce(
     technologies[]->{
       _id,

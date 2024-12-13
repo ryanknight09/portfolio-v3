@@ -16,7 +16,6 @@ const iconClass =
 
 export const LoadingButton = ({ label, loading, className }: Props) => (
   <Button
-    // variant="ghost"
     disabled={loading}
     type="submit"
     className={cn(

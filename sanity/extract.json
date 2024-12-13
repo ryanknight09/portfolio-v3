@@ -365,7 +365,7 @@
         "value": {
           "type": "string"
         },
-        "optional": true
+        "optional": false
       },
       "alt": {
         "type": "objectAttribute",
@@ -380,21 +380,21 @@
           "type": "inline",
           "name": "slug"
         },
-        "optional": true
+        "optional": false
       },
       "tag": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
         },
-        "optional": true
+        "optional": false
       },
       "projectNumber": {
         "type": "objectAttribute",
         "value": {
           "type": "number"
         },
-        "optional": true
+        "optional": false
       },
       "mainImage": {
         "type": "objectAttribute",
@@ -452,7 +452,7 @@
               "value": {
                 "type": "string"
               },
-              "optional": true
+              "optional": false
             },
             "_type": {
               "type": "objectAttribute",
@@ -463,7 +463,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       },
       "imagesGallery": {
         "type": "objectAttribute",
@@ -583,14 +583,14 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       },
       "publishedAt": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
         },
-        "optional": true
+        "optional": false
       },
       "body": {
         "type": "objectAttribute",
@@ -838,7 +838,7 @@
             ]
           }
         },
-        "optional": true
+        "optional": false
       },
       "isPrivate": {
         "type": "objectAttribute",
@@ -2439,7 +2439,7 @@
           "value": {
             "type": "string"
           },
-          "optional": true
+          "optional": false
         },
         "source": {
           "type": "objectAttribute",

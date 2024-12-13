@@ -6,8 +6,8 @@ import { FormTextArea } from "@/components/form/FormTextArea";
 import { Form } from "@/components/ui/form";
 import { useActionLifeCycle } from "@/hooks/useActionLifeCycle";
 import { contactSchema } from "@/schemas/contactSchema";
-import { PartyPopper } from "lucide-react";
-import { LoadingButton } from "../LoadingButton";
+import { ContactFormFooter } from "./ContactFormFooter";
+import { ContactFormSuccess } from "./ContactFormSuccess";
 
 export function ContactForm() {
   const { runAction, state, isPending, form, formRef } = useActionLifeCycle({
@@ -20,18 +20,7 @@ export function ContactForm() {
     },
   });
 
-  if (state.message === "success")
-    return (
-      <div className="flex items-center space-x-4 rounded-md border border-primary p-8 max-w-3xl">
-        <PartyPopper />
-        <div className="flex-1 space-y-1">
-          <p className="text-xl leading-none">Thanks!</p>
-          <p className="text-muted-foreground">
-            I&apos;ll get back to you as soon as I can!
-          </p>
-        </div>
-      </div>
-    );
+  if (state.message === "success") return <ContactFormSuccess />;
 
   return (
     <Form {...form}>
@@ -59,24 +48,7 @@ export function ContactForm() {
           placeholder="Your message..."
           className="resize-none min-h-[200px] bg-secondary"
         />
-        <div className="flex flex-col space-y-4">
-          {state.message && (
-            <p
-              className={`text-sm ${
-                state.isError ? "text-red-500" : "text-primary"
-              }`}
-            >
-              {state.message}
-            </p>
-          )}
-          <div className="flex justify-end">
-            <LoadingButton
-              label={"Send"}
-              loading={isPending}
-              className="w-full h-12"
-            />
-          </div>
-        </div>
+        <ContactFormFooter isPending={isPending} state={state} />
       </form>
     </Form>
   );

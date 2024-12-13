@@ -1,3 +1,4 @@
+import { Footer } from "@/components/Footer";
 import { DesktopNav } from "@/components/navigation/desktop/DesktopNav";
 import { MobileNavigation } from "@/components/navigation/mobile/MobileNavigation";
 
@@ -14,9 +15,7 @@ export default async function Layout({
           <DesktopNav />
           <main className="py-12 px-6 md:p-6 xl:p-12 mx-auto h-auto w-full flex items-center flex-col overflow-x-hidden">
             {children}
-            <footer className="flex justify-center mt-auto pt-12">
-              <p>Made with Next.js, Tailwind.</p>
-            </footer>
+            <Footer />
           </main>
         </div>
       </div>
