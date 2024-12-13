@@ -24,7 +24,7 @@ export const ProjectCard = ({
     <Link
       href={`projects/${slug}`}
       className={cn(
-        "flex flex-col gap-6 py-6 group cursor-pointer group relative overflow-hidden",
+        "flex flex-col gap-6 py-6 group cursor-pointer group relative",
         classname
       )}
     >

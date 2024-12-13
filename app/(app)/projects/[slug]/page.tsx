@@ -1,4 +1,5 @@
 import { AnimatedGhostLink } from "@/components/AnimatedLink";
+import { FadeUpDiv, StaggeredXDiv } from "@/components/Animation";
 import { DottedLine, DottedLineFlexContainer } from "@/components/DottedLine";
 import { ProjectCarousel } from "@/components/projectCarousel";
 import { cn } from "@/lib/utils";
@@ -30,14 +31,16 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <div className="flex flex-col gap-12 w-full">
-      <DottedLineFlexContainer>
-        <DottedLine>
-          <AnimatedGhostLink className="w-full md:max-w-max" href="/projects">
-            Back to Projects
-          </AnimatedGhostLink>
-        </DottedLine>
-      </DottedLineFlexContainer>
-      <section className="flex gap-12 flex-col">
+      <FadeUpDiv>
+        <DottedLineFlexContainer>
+          <DottedLine>
+            <AnimatedGhostLink className="w-full md:max-w-max" href="/projects">
+              Back to Projects
+            </AnimatedGhostLink>
+          </DottedLine>
+        </DottedLineFlexContainer>
+      </FadeUpDiv>
+      <FadeUpDiv className="flex gap-12 flex-col">
         <div className="flex items-center gap-12">
           <h1 className="text-4xl md:text-5xl lg:max-w-xl break-words">
             {project.title}
@@ -86,29 +89,31 @@ export default async function ProjectPage({ params }: Props) {
             </div>
           </div>
         </div>
-      </section>
-      <section className="md:pt-12 flex gap-12 flex-col">
+      </FadeUpDiv>
+      <FadeUpDiv className="md:pt-12 flex gap-12 flex-col">
         {<ProjectCarousel images={images} />}
-      </section>
+      </FadeUpDiv>
       <section className="md:pt-12 flex gap-12 flex-col">
         <div className=" hidden md:flex justify-center items-center rounded-md bg-transparent shadow-[inset_0_0_120px_rgba(0,50,100,0.50)] h-72 lg:h-96">
           <div className="md:flex md:justify-around items-center p-12 w-full flex-wrap">
-            {project.technologies.map((tech) => (
-              <Link
-                key={tech._id}
-                href={tech.href || ""}
-                target="blank"
-                className="hover:animate-pulse"
-              >
-                <Image
-                  alt="stack image"
-                  src={`/svg/${tech.slug?.current}.svg`}
-                  width={0}
-                  height={0}
-                  sizes="100%"
-                  className="aspect-square h-14 lg:h-20 w-auto"
-                />
-              </Link>
+            {project.technologies.map((tech, index) => (
+              <StaggeredXDiv index={index} key={tech._id}>
+                <Link
+                  key={tech._id}
+                  href={tech.href || ""}
+                  target="blank"
+                  className="hover:animate-pulse"
+                >
+                  <Image
+                    alt="stack image"
+                    src={`/svg/${tech.slug?.current}.svg`}
+                    width={0}
+                    height={0}
+                    sizes="100%"
+                    className="aspect-square h-14 lg:h-20 w-auto"
+                  />
+                </Link>
+              </StaggeredXDiv>
             ))}
           </div>
         </div>

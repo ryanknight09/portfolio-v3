@@ -1,6 +1,7 @@
 import { urlFor } from "@/sanity/lib/image";
 import { type EXPERIENCE_QUERYResult } from "@/sanity/types";
 import Image from "next/image";
+import { FadeUpDiv } from "../Animation";
 import { DottedLine } from "../DottedLine";
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 
 export const PlacesWorked = ({ experiences }: Props) => {
   return (
-    <section className="flex gap-12 flex-col">
+    <FadeUpDiv className="flex gap-12 flex-col">
       <h1 className="text-xl md:text-2xl max-w-64 md:max-w-sm lg:max-w-xl break-words">
         Places I&apos;ve Worked
       </h1>
@@ -45,6 +46,6 @@ export const PlacesWorked = ({ experiences }: Props) => {
         </ul>
       </div>
       <DottedLine />
-    </section>
+    </FadeUpDiv>
   );
 };

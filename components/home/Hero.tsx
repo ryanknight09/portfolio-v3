@@ -1,9 +1,12 @@
+"use client";
+
 import { AnimatedLink } from "@/components/AnimatedLink";
 import { MapPin } from "lucide-react";
+import { FadeUpDiv } from "../Animation";
 import { DottedLine, DottedLineFlexContainer } from "../DottedLine";
 
 export const Hero = () => (
-  <section className="md:pt-12 flex gap-12 flex-col overflow-x-hidden">
+  <FadeUpDiv className="md:pt-12 flex gap-12 flex-col overflow-x-hidden">
     <h1 className="text-4xl md:text-5xl max-w-64 md:max-w-sm lg:max-w-xl break-words">
       Hello Everyone! Im Ryan.
     </h1>
@@ -26,5 +29,5 @@ export const Hero = () => (
         More About Me
       </AnimatedLink>
     </DottedLineFlexContainer>
-  </section>
+  </FadeUpDiv>
 );

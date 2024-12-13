@@ -2,6 +2,7 @@ import { AnimatedLink } from "@/components/AnimatedLink";
 import { ProjectCard } from "@/components/ProjectCard";
 import { cn } from "@/lib/utils";
 import { type TOP_TWO_PROJECTS_QUERYResult } from "@/sanity/types";
+import { FadeUpDiv } from "../Animation";
 import { DottedLine, DottedLineFlexContainer } from "../DottedLine";
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 }
 
 export const Projects = ({ projects }: Props) => (
-  <section className="flex gap-12 flex-col overflow-x-hidden">
+  <FadeUpDiv className="flex gap-12 flex-col overflow-x-hidden">
     <h1 className="text-xl md:text-2xl max-w-64 md:max-w-sm lg:max-w-xl break-words">
       Recent Projects
     </h1>
@@ -31,5 +32,5 @@ export const Projects = ({ projects }: Props) => (
         View All Projects
       </AnimatedLink>
     </DottedLineFlexContainer>
-  </section>
+  </FadeUpDiv>
 );

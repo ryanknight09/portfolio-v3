@@ -1,6 +1,9 @@
+"use client";
+
 import { type TECHNOLOGY_QUERYResult } from "@/sanity/types";
 import Image from "next/image";
 import { AnimatedLink } from "../AnimatedLink";
+import { FadeUpDiv } from "../Animation";
 import { DottedLine, DottedLineFlexContainer } from "../DottedLine";
 
 interface Props {
@@ -14,7 +17,7 @@ export const Stack = ({ stack }: Props) => {
   });
 
   return (
-    <section className="flex gap-12 flex-col">
+    <FadeUpDiv className="flex gap-12 flex-col">
       <h1 className="text-xl md:text-2xl max-w-64 md:max-w-sm lg:max-w-xl break-words">
         Stack
       </h1>
@@ -46,6 +49,6 @@ export const Stack = ({ stack }: Props) => {
           View All Stacks
         </AnimatedLink>
       </DottedLineFlexContainer>
-    </section>
+    </FadeUpDiv>
   );
 };
