@@ -20,7 +20,7 @@ export const ProjectHeader = ({
 }: Props) => {
   return (
     <FadeUpDiv className="flex gap-12 flex-col">
-      <div className="flex items-center gap-12">
+      <div className="flex flex-col gap-6">
         <h1 className="text-4xl md:text-5xl lg:max-w-xl break-words">
           {title}
         </h1>

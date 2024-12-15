@@ -21,9 +21,7 @@ export const HostedLink = ({
       </Link>
     )}
     {hostingIssue && (
-      <p className="text-primary font-semibold">
-        * See description for hosting issue.
-      </p>
+      <p className="text-primary font-semibold">* See description.</p>
     )}
   </div>
 );

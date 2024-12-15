@@ -6,7 +6,7 @@ export const DottedLineFlexContainer = ({
 }: {
   children: React.ReactNode;
 }) => (
-  <div className="flex items-center flex-col md:flex-row justify-between overflow-x-hidden gap-12">
+  <div className="flex md:items-center flex-col md:flex-row md:justify-between overflow-x-hidden gap-12">
     {children}
   </div>
 );
