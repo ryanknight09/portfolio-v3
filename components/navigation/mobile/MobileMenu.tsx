@@ -9,7 +9,7 @@ interface Props {
 export const MobileMenu = ({ activeMenu, onNavChange }: Props) => {
   return (
     <motion.div
-      className="w-full h-screen bg-background absolute top-24"
+      className="w-full h-[calc(100vh - 96px)] bg-background absolute top-24"
       variants={menu}
       animate={activeMenu ? "open" : "closed"}
       initial="closed"
@@ -24,7 +24,7 @@ export const MobileMenu = ({ activeMenu, onNavChange }: Props) => {
 const menu = {
   open: {
     width: "100%",
-    height: "100vh",
+    height: "calc(100vh - 96px)",
     transition: { duration: 0.5, type: "tween", ease: [0.76, 0, 0.24, 1] },
   },
   closed: {
