@@ -1,4 +1,5 @@
-import { TreeExample } from "@/components/custom/tree/TreeExample";
+import { DottedLine } from "@/components/DottedLine";
+import { experimentalComponents } from "@/components/experiments-components";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,7 +10,12 @@ export const metadata: Metadata = {
 export default function Components() {
   return (
     <div className="flex flex-col gap-24 w-full">
-      <TreeExample />
+      {experimentalComponents.map((component) => (
+        <>
+          {component}
+          <DottedLine />
+        </>
+      ))}
     </div>
   );
 }
