@@ -58,14 +58,7 @@ export const blockContentType = defineType({
     defineArrayMember({
       type: "code",
       options: {
-        languageAlternatives: [
-          { title: "", value: "" },
-          { title: "Javascript", value: "javascript" },
-          { title: "Typescript", value: "typescript" },
-          { title: "HTML", value: "html" },
-          { title: "CSS", value: "css" },
-          { title: "React", value: "react" },
-        ],
+        // languageAlternatives: [{ title: "Typescript", value: "tsx" }],
         withFilename: false,
       },
     }),

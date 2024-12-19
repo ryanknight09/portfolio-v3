@@ -1,5 +1,6 @@
+import { ClipBoard } from "@/components/ClipBoard";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vs } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 interface Props {
   value: {
@@ -10,10 +11,19 @@ interface Props {
 
 const CodeBlock = ({ value }: Props) => {
   const { code, language } = value;
+
   return (
-    <SyntaxHighlighter language="tsx" style={vs}>
-      {code}
-    </SyntaxHighlighter>
+    <div className="border rounded-md relative group">
+      <ClipBoard value={code} className="absolute top-4 right-4" />
+      <SyntaxHighlighter
+        language={language}
+        style={vscDarkPlus}
+        wrapLines={true}
+        customStyle={{ background: "none" }}
+      >
+        {code}
+      </SyntaxHighlighter>
+    </div>
   );
 };
 

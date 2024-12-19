@@ -30,11 +30,11 @@ export const ExperimentalBlockComponent = ({ block }: Props) => {
         <TabsContent value="preview">
           {experimentalBlocks[block.slug.current]}
         </TabsContent>
-        <TabsContent value="code" className="h-full">
+        <TabsContent value="code">
           {block.body ? (
-            <code>
+            <div className="prose max-w-none">
               <PortableText value={block.body} components={components} />
-            </code>
+            </div>
           ) : null}
         </TabsContent>
       </Tabs>
