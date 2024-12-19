@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Custom Built Components",
-  description: "Components custom built for user, practice, and experiments.",
+  description: "Components custom built for use, practice, and experiments.",
 };
 
 export default function Components() {
