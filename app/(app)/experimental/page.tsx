@@ -1,5 +1,5 @@
 import { DottedLine } from "@/components/DottedLine";
-import { experimentalComponents } from "@/components/experiments-components";
+import { experimentalComponents } from "@/components/experimental-components";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
