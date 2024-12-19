@@ -10,6 +10,15 @@ export const TECHNOLOGY_QUERY =
   tag
 }`);
 
+export const EXPERIMENTAL_BLOCKS_QUERY =
+  defineQuery(`*[_type == "experimentalBlock" && defined(slug.current)][]{
+  _id,
+  title,
+  slug,
+  description,
+  href,
+}`);
+
 export const EXPERIENCE_QUERY =
   defineQuery(`*[_type == "workExperience" && defined(slug.current)]|order(startDate desc)[0...12]{
   _id,

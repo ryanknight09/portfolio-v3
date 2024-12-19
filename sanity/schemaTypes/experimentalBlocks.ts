@@ -10,10 +10,12 @@ export const experimentalBlock = defineType({
     defineField({
       name: "title",
       type: "string",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "slug",
       type: "slug",
+      validation: (rule) => rule.required(),
       options: {
         source: "title",
       },
@@ -21,15 +23,18 @@ export const experimentalBlock = defineType({
     defineField({
       name: "description",
       type: "text",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       title: "Link",
       name: "href",
       type: "url",
-      validation: (Rule) =>
-        Rule.uri({
-          scheme: ["https"],
-        }),
+      validation: (rule) =>
+        rule
+          .uri({
+            scheme: ["https"],
+          })
+          .required(),
     }),
   ],
 });

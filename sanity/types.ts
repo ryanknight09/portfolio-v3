@@ -68,6 +68,18 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type ExperimentalBlock = {
+  _id: string;
+  _type: "experimentalBlock";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+  description: string;
+  href: string;
+};
+
 export type Project = {
   _id: string;
   _type: "project";
@@ -467,7 +479,7 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Project | Hero | Technology | WorkExperience | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | ExperimentalBlock | Project | Hero | Technology | WorkExperience | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: sanity/lib/queries.ts
 // Variable: TECHNOLOGY_QUERY
@@ -479,6 +491,15 @@ export type TECHNOLOGY_QUERYResult = Array<{
   description: string | null;
   href: string | null;
   tag: string | null;
+}>;
+// Variable: EXPERIMENTAL_BLOCKS_QUERY
+// Query: *[_type == "experimentalBlock" && defined(slug.current)][]{  _id,  title,  slug,  description,  href,}
+export type EXPERIMENTAL_BLOCKS_QUERYResult = Array<{
+  _id: string;
+  title: string;
+  slug: Slug;
+  description: string;
+  href: string;
 }>;
 // Variable: EXPERIENCE_QUERY
 // Query: *[_type == "workExperience" && defined(slug.current)]|order(startDate desc)[0...12]{  _id,  title,  slug,  mainImage,  description,  jobTitle,  startDate,  endDate,  isCurrent}
@@ -835,6 +856,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"technology\" && defined(slug.current)][]{\n  _id,\n  title,\n  slug,\n  description,\n  href,\n  tag\n}": TECHNOLOGY_QUERYResult;
+    "*[_type == \"experimentalBlock\" && defined(slug.current)][]{\n  _id,\n  title,\n  slug,\n  description,\n  href,\n}": EXPERIMENTAL_BLOCKS_QUERYResult;
     "*[_type == \"workExperience\" && defined(slug.current)]|order(startDate desc)[0...12]{\n  _id,\n  title,\n  slug,\n  mainImage,\n  description,\n  jobTitle,\n  startDate,\n  endDate,\n  isCurrent\n}": EXPERIENCE_QUERYResult;
     "*[_type == \"project\" && defined(slug.current)]|order(projectNumber desc)[0...12]{\n  _id,\n  title,\n  slug,\n  projectNumber,\n  tag,\n  body,\n  mainImage,\n  gallery,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}": PROJECTS_QUERYResult;
     "*[_type == \"project\" && defined(slug.current) && projectNumber in [6,5]]|order(projectNumber desc){\n  _id,\n  title,\n  slug,\n  projectNumber,\n  body,\n  tag,\n  mainImage,\n  gallery,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}": TOP_TWO_PROJECTS_QUERYResult;
