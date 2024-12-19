@@ -5,6 +5,7 @@ import { type TreeNode } from "@/types/TreeNode";
 import { useState } from "react";
 import { Directory } from "./Directory";
 import { File } from "./File";
+
 interface Props<T> {
   treeNode: TreeNode<T>;
   isRoot: boolean;
@@ -17,6 +18,7 @@ export const Tree = <T,>({
   onNodeHover = () => null,
 }: Props<T>) => {
   const [open, setOpen] = useState(false);
+  const renderChildren = open || isRoot;
 
   if (!treeNode.isDirectory)
     return <File treeNode={treeNode} onNodeHover={onNodeHover} />;
@@ -31,7 +33,7 @@ export const Tree = <T,>({
         isRoot={isRoot}
         onClick={onDirectoryClick}
       />
-      {(open || isRoot) &&
+      {renderChildren &&
         treeNode.children?.map((child) => (
           <div key={child.name} className={cn(!isRoot && "pl-8")}>
             <Tree treeNode={child} isRoot={false} onNodeHover={onNodeHover} />

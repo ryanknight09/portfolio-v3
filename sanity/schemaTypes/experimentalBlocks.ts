@@ -26,6 +26,11 @@ export const experimentalBlock = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "body",
+      type: "blockContent",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       title: "Link",
       name: "href",
       type: "url",

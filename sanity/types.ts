@@ -77,6 +77,38 @@ export type ExperimentalBlock = {
   title: string;
   slug: Slug;
   description: string;
+  body: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  } | {
+    _key: string;
+  } & Code>;
   href: string;
 };
 
@@ -152,7 +184,9 @@ export type Project = {
     alt?: string;
     _type: "image";
     _key: string;
-  }>;
+  } | {
+    _key: string;
+  } & Code>;
   isPrivate?: boolean;
   hostingIssue?: boolean;
   hostedHref?: string;
@@ -332,7 +366,9 @@ export type Post = {
     alt?: string;
     _type: "image";
     _key: string;
-  }>;
+  } | {
+    _key: string;
+  } & Code>;
 };
 
 export type Author = {
@@ -420,7 +456,9 @@ export type BlockContent = Array<{
   alt?: string;
   _type: "image";
   _key: string;
-}>;
+} | {
+  _key: string;
+} & Code>;
 
 export type SanityImageCrop = {
   _type: "sanity.imageCrop";
@@ -479,7 +517,15 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | ExperimentalBlock | Project | Hero | Technology | WorkExperience | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type Code = {
+  _type: "code";
+  language?: string;
+  filename?: string;
+  code?: string;
+  highlightedLines?: Array<number>;
+};
+
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | ExperimentalBlock | Project | Hero | Technology | WorkExperience | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Code;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: sanity/lib/queries.ts
 // Variable: TECHNOLOGY_QUERY
@@ -493,13 +539,49 @@ export type TECHNOLOGY_QUERYResult = Array<{
   tag: string | null;
 }>;
 // Variable: EXPERIMENTAL_BLOCKS_QUERY
-// Query: *[_type == "experimentalBlock" && defined(slug.current)][]{  _id,  title,  slug,  description,  href,}
+// Query: *[_type == "experimentalBlock" && defined(slug.current)][]{  _id,  title,  slug,  description,  href,  body,  _type,  _createdAt,  _updatedAt,  _rev}
 export type EXPERIMENTAL_BLOCKS_QUERYResult = Array<{
   _id: string;
   title: string;
   slug: Slug;
   description: string;
   href: string;
+  body: Array<{
+    _key: string;
+  } & Code | {
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }>;
+  _type: "experimentalBlock";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
 }>;
 // Variable: EXPERIENCE_QUERY
 // Query: *[_type == "workExperience" && defined(slug.current)]|order(startDate desc)[0...12]{  _id,  title,  slug,  mainImage,  description,  jobTitle,  startDate,  endDate,  isCurrent}
@@ -534,6 +616,8 @@ export type PROJECTS_QUERYResult = Array<{
   projectNumber: number;
   tag: string;
   body: Array<{
+    _key: string;
+  } & Code | {
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -587,6 +671,8 @@ export type TOP_TWO_PROJECTS_QUERYResult = Array<{
   slug: Slug;
   projectNumber: number;
   body: Array<{
+    _key: string;
+  } & Code | {
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -639,6 +725,8 @@ export type PROJECT_QUERYResult = {
   _id: string;
   title: string;
   body: Array<{
+    _key: string;
+  } & Code | {
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -713,6 +801,8 @@ export type POSTS_QUERYResult = Array<{
   description: string | null;
   slug: Slug | null;
   body: Array<{
+    _key: string;
+  } & Code | {
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -788,6 +878,8 @@ export type POST_QUERYResult = {
   description: string | null;
   slug: Slug | null;
   body: Array<{
+    _key: string;
+  } & Code | {
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -856,7 +948,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"technology\" && defined(slug.current)][]{\n  _id,\n  title,\n  slug,\n  description,\n  href,\n  tag\n}": TECHNOLOGY_QUERYResult;
-    "*[_type == \"experimentalBlock\" && defined(slug.current)][]{\n  _id,\n  title,\n  slug,\n  description,\n  href,\n}": EXPERIMENTAL_BLOCKS_QUERYResult;
+    "*[_type == \"experimentalBlock\" && defined(slug.current)][]{\n  _id,\n  title,\n  slug,\n  description,\n  href,\n  body,\n  _type,\n  _createdAt,\n  _updatedAt,\n  _rev\n}": EXPERIMENTAL_BLOCKS_QUERYResult;
     "*[_type == \"workExperience\" && defined(slug.current)]|order(startDate desc)[0...12]{\n  _id,\n  title,\n  slug,\n  mainImage,\n  description,\n  jobTitle,\n  startDate,\n  endDate,\n  isCurrent\n}": EXPERIENCE_QUERYResult;
     "*[_type == \"project\" && defined(slug.current)]|order(projectNumber desc)[0...12]{\n  _id,\n  title,\n  slug,\n  projectNumber,\n  tag,\n  body,\n  mainImage,\n  gallery,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}": PROJECTS_QUERYResult;
     "*[_type == \"project\" && defined(slug.current) && projectNumber in [6,5]]|order(projectNumber desc){\n  _id,\n  title,\n  slug,\n  projectNumber,\n  body,\n  tag,\n  mainImage,\n  gallery,\n  publishedAt,\n  \"categories\": coalesce(\n    categories[]->{\n      _id,\n      slug,\n      title\n    },\n    []\n  )\n}": TOP_TWO_PROJECTS_QUERYResult;

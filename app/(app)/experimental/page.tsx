@@ -1,16 +1,16 @@
 import { DottedLine } from "@/components/DottedLine";
-import { experimentalBlocks } from "@/components/experimental-components";
-import { GithubLink } from "@/components/project/project-header/GithubLink";
+import { ExperimentalBlockComponent } from "@/components/experimental-components/ExperimentalBlocks";
 import { client } from "@/sanity/lib/client";
 import { EXPERIMENTAL_BLOCKS_QUERY } from "@/sanity/lib/queries";
 import type { Metadata } from "next";
+import { Fragment } from "react";
 
 export const metadata: Metadata = {
   title: "Custom Built Components",
   description: "Components custom built for use, practice, and experiments.",
 };
 
-const options = { next: { revalidate: 60 } };
+const options = { next: { revalidate: 5 } };
 
 export default async function Components() {
   const experiments = await client.fetch(
@@ -20,19 +20,12 @@ export default async function Components() {
   );
 
   return (
-    <div className="flex flex-col gap-24 w-full">
+    <div className="flex flex-col gap-24 w-full max-w-4xl h-full items-center">
       {experiments.map((experiment) => (
-        <div className="grid gap-6" key={experiment._id}>
-          <div className="flex flex-col gap-2">
-            <p className="text-3xl font-semibold">{experiment.title}</p>
-            <p className="text-muted-foreground inline-block">
-              {experiment.description}
-            </p>
-            <GithubLink githubHref={experiment.href} />
-          </div>
-          {experimentalBlocks[experiment.slug.current]}
+        <Fragment key={experiment._id}>
+          <ExperimentalBlockComponent block={experiment} />
           <DottedLine />
-        </div>
+        </Fragment>
       ))}
     </div>
   );

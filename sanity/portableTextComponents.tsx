@@ -1,6 +1,7 @@
 import { urlFor } from "@/sanity/lib/image";
 import { type PortableTextComponents } from "next-sanity";
 import Image from "next/image";
+import CodeBlock from "./CodeBlock";
 
 export const components: PortableTextComponents = {
   types: {
@@ -14,5 +15,8 @@ export const components: PortableTextComponents = {
           height="400"
         />
       ) : null,
+    code: ({ value }: any) => {
+      return <CodeBlock value={value} />;
+    },
   },
 };

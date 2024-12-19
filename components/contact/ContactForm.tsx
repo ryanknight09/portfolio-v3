@@ -29,6 +29,9 @@ export function ContactForm() {
         ref={formRef}
         className="flex flex-col gap-2 max-w-3xl"
       >
+        {state.message && state.isError && (
+          <p className="text-sm text-red-500">{state.message}</p>
+        )}
         <p className="mb-4 text-lg">Send Me an Email</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
           <FormInput

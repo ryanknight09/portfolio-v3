@@ -17,6 +17,11 @@ export const EXPERIMENTAL_BLOCKS_QUERY =
   slug,
   description,
   href,
+  body,
+  _type,
+  _createdAt,
+  _updatedAt,
+  _rev
 }`);
 
 export const EXPERIENCE_QUERY =
