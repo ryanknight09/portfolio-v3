@@ -556,7 +556,7 @@ export type PROJECTS_QUERYResult = Array<{
   };
   gallery: null;
   publishedAt: string;
-  categories: Array<never> | null;
+  categories: Array<never>;
 }>;
 // Variable: TOP_TWO_PROJECTS_QUERY
 // Query: *[_type == "project" && defined(slug.current) && projectNumber in [6,5]]|order(projectNumber desc){  _id,  title,  slug,  projectNumber,  body,  tag,  mainImage,  gallery,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  )}
@@ -610,7 +610,7 @@ export type TOP_TWO_PROJECTS_QUERYResult = Array<{
   };
   gallery: null;
   publishedAt: string;
-  categories: Array<never> | null;
+  categories: Array<never>;
 }>;
 // Variable: PROJECT_QUERY
 // Query: *[_type == "project" && slug.current == $slug][0]{  _id,  title,  body,  mainImage,  imagesGallery,  publishedAt,  hostingIssue,  isPrivate,  githubHref,  hostedHref,  "technologies": coalesce(    technologies[]->{      _id,      slug,      title,      href,      tag,    },    []  ),}
@@ -682,7 +682,7 @@ export type PROJECT_QUERYResult = {
     title: string | null;
     href: string | null;
     tag: string | null;
-  }> | Array<never>;
+  }>;
 } | null;
 // Variable: POSTS_QUERY
 // Query: *[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{  _id,  title,  description,  slug,  body,  mainImage,  publishedAt,  "categories": coalesce(    categories[]->{      _id,      slug,      title    },    []  ),  author->{    name,    image  }}
