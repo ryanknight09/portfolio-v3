@@ -23,8 +23,11 @@ export default async function Components() {
     <div className="flex flex-col gap-24 w-full">
       {experiments.map((experiment) => (
         <div className="grid gap-6" key={experiment._id}>
-          <div className="flex items-center gap-6">
-            <p className="text-2xl font-semibold">{experiment.title}</p>
+          <div className="flex flex-col gap-2">
+            <p className="text-3xl font-semibold">{experiment.title}</p>
+            <p className="text-muted-foreground inline-block">
+              {experiment.description}
+            </p>
             <GithubLink githubHref={experiment.href} />
           </div>
           {experimentalBlocks[experiment.slug.current]}
