@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { type NavigationItem } from "@/types/navigationItem";
 import {
   CircleUser,
+  Component,
   FolderGit2,
   House,
   Layers,
@@ -21,6 +22,7 @@ const paths: NavigationItem[] = [
   { name: "stacks", url: "/stacks", icon: Layers },
   { name: "posts", url: "/posts", icon: Newspaper },
   { name: "contact", url: "/contact", icon: Mail },
+  { name: "components", url: "/components", icon: Component },
 ];
 
 export const DesktopMenu = () => {
