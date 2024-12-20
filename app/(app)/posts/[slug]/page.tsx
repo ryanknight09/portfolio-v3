@@ -1,5 +1,6 @@
 import { Post } from "@/components/post/Post";
 import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 import { POST_QUERY } from "@/sanity/lib/queries";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -34,10 +35,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const imageUrl = urlFor(post.mainImage || "").url();
+
   return {
     title: `${post.title} - Ryan Knight's Blog`,
     description:
       post.description ||
       "Read this insightful article about web development and design on Ryan Knight's blog.",
+    openGraph: {
+      title: `${post.title} - Ryan Knight's Blog`,
+      description:
+        post.description ||
+        "Read this insightful article about web development and design on Ryan Knight's blog.",
+      url: `https://yourwebsite.com/posts/${post.slug}`,
+      siteName: "Ryan Knight's Blog",
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.mainImage?.alt || post.title || "",
+        },
+      ],
+    },
   };
 }
