@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description:
         post.description ||
         "Read this insightful article about web development and design on Ryan Knight's blog.",
-      url: `https://yourwebsite.com/posts/${post.slug}`,
+      url: `https://ryanknight.io/posts/${post.slug}`,
       siteName: "Ryan Knight's Blog",
       images: [
         {
