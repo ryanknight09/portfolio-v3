@@ -16,6 +16,7 @@ export const EXPERIMENTAL_BLOCKS_QUERY =
   title,
   slug,
   description,
+  mainImage,
   href,
   body,
   _type,

@@ -26,6 +26,21 @@ export const experimentalBlock = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "mainImage",
+      type: "image",
+      validation: (rule) => rule.required(),
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Alternative text",
+        },
+      ],
+    }),
+    defineField({
       name: "body",
       type: "blockContent",
       validation: (rule) => rule.required(),

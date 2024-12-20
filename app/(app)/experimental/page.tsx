@@ -1,14 +1,10 @@
 import { DottedLine } from "@/components/DottedLine";
 import { ExperimentalBlockComponent } from "@/components/experimental-components/ExperimentalBlocks";
 import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 import { EXPERIMENTAL_BLOCKS_QUERY } from "@/sanity/lib/queries";
 import type { Metadata } from "next";
 import { Fragment } from "react";
-
-export const metadata: Metadata = {
-  title: "Custom Built Components",
-  description: "Components custom built for use, practice, and experiments.",
-};
 
 const options = { next: { revalidate: 5 } };
 
@@ -29,4 +25,31 @@ export default async function Components() {
       ))}
     </div>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const experiments = await client.fetch(
+    EXPERIMENTAL_BLOCKS_QUERY,
+    {},
+    options
+  );
+
+  if (!experiments) {
+    return {
+      title: "Post Not Found",
+      description: "The requested blog post could not be found.",
+    };
+  }
+
+  return {
+    title: "Custom Built Components",
+    description: "Components custom built for use, practice, and experiments.",
+    openGraph: {
+      images: [
+        {
+          url: urlFor(experiments[0].mainImage).url(),
+        },
+      ],
+    },
+  };
 }
