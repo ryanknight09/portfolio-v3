@@ -1,12 +1,12 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { components } from "@/sanity/portableTextComponents";
-import { type ExperimentalBlock } from "@/sanity/types";
+import { type EXPERIMENTAL_BLOCK_QUERYResult } from "@/sanity/types";
 import { PortableText } from "next-sanity";
 import { experimentalBlocks } from ".";
 import { GithubLink } from "../project/project-header/GithubLink";
 
 interface Props {
-  block: ExperimentalBlock;
+  block: NonNullable<EXPERIMENTAL_BLOCK_QUERYResult>;
 }
 
 export const ExperimentalBlockComponent = ({ block }: Props) => {

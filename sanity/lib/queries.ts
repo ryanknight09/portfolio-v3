@@ -25,6 +25,21 @@ export const EXPERIMENTAL_BLOCKS_QUERY =
   _rev
 }`);
 
+export const EXPERIMENTAL_BLOCK_QUERY =
+  defineQuery(`*[_type == "experimentalBlock" && slug.current == $slug][0]{
+  _id,
+  title,
+  slug,
+  description,
+  mainImage,
+  href,
+  body,
+  _type,
+  _createdAt,
+  _updatedAt,
+  _rev
+}`);
+
 export const EXPERIENCE_QUERY =
   defineQuery(`*[_type == "workExperience" && defined(slug.current)]|order(startDate desc)[0...12]{
   _id,
