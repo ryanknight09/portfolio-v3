@@ -13,7 +13,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Ryan's Web Development & Design Portfolio",
   description:
-    "Discover Ryan's expertise in web development and design through his portfolio, featuring projects, skills, and experience.",
+    "Discover my expertise in web development and design through his portfolio, featuring projects, skills, and experience.",
 };
 
 export default async function RootLayout({
@@ -23,26 +23,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <meta
-          property="og:title"
-          content="Ryan's Web Development & Design Portfolio"
-        />
-        <meta
-          property="og:description"
-          content="Discover Ryan's expertise in web development and design through his portfolio, featuring projects, skills, and experience."
-        />
-        <meta property="og:image" content="/images/me.jpg" />
-        <meta
-          property="og:url"
-          content="https://portfolio-v3-rho-teal.vercel.app/"
-        />
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:site_name"
-          content="Ryan's Web Development & Design Portfolio"
-        />
-      </head>
+      <head></head>
       <body
         className={`${spaceGrotesk.className} antialiased scroll-smooth h-screen`}
       >
