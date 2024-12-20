@@ -41,13 +41,24 @@ export async function generateMetadata(): Promise<Metadata> {
     };
   }
 
+  const imageUrl = urlFor(experiments[0].mainImage).url();
+
   return {
     title: "Custom Built Components",
     description: "Components custom built for use, practice, and experiments.",
     openGraph: {
+      title: `${experiments[0].title} - Ryan Knight's Blog`,
+      description:
+        experiments[0].description ||
+        "Read this insightful article about web development and design on Ryan Knight's blog.",
+      url: "https://ryanknight.io/experimental",
+      siteName: "Ryan Knight's Blog",
       images: [
         {
-          url: urlFor(experiments[0].mainImage).url(),
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: experiments[0].mainImage?.alt || experiments[0].title || "",
         },
       ],
     },
