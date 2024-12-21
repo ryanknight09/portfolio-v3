@@ -14,7 +14,7 @@ export const TreeExample = () => {
   };
 
   return (
-    <div className="grid gap-6 max-w-md">
+    <div className="grid gap-6 max-w-md w-96">
       <FileInfo node={node} />
       <div className="p-4 bg-secondary h-96 rounded-md overflow-hidden">
         <div className="overflow-auto h-full">

@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 
 interface Props {
   isOpen: boolean;
-  onClick: () => void;
 }
 
 export const MenuButton = ({ isOpen = false, ...props }: Props) => {

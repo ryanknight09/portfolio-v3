@@ -1,13 +1,27 @@
 "use client";
 
-// import { useMotionValueEvent, useScroll } from "framer-motion";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import { type Path } from "@/types/navigationItem";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { MenuButton } from "./MenuButton";
-import { MobileMenu } from "./MobileMenu";
+import { Nav } from "./Nav";
 
-export const MobileNavigation = () => {
+// TODO: Make change Path type and make Nav Recursive.
+
+interface Props {
+  paths: Path[];
+}
+
+export const MobileNavigation = ({ paths }: Props) => {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
@@ -41,9 +55,20 @@ export const MobileNavigation = () => {
             <p className="text-sm text-primary font-medium">@ QIR</p>
           </div>
         </div>
-        <MenuButton isOpen={open} onClick={() => setOpen(!open)} />
+        <Drawer onOpenChange={setOpen} open={open}>
+          <DrawerTrigger asChild>
+            <MenuButton isOpen={open} />
+          </DrawerTrigger>
+          <DrawerContent>
+            <DrawerHeader>
+              <VisuallyHidden>
+                <DrawerTitle>Navigation</DrawerTitle>
+              </VisuallyHidden>
+            </DrawerHeader>
+            <Nav paths={paths} onNavChange={() => setOpen(false)} />
+          </DrawerContent>
+        </Drawer>
       </div>
-      <MobileMenu activeMenu={open} onNavChange={() => setOpen(false)} />
     </motion.nav>
   );
 };

@@ -8,12 +8,13 @@ export const DatePicker = () => {
   const month = 10;
   const dates = generateCalendarDates(year, month);
 
-  console.log(dates[5].getMonth());
-
   return (
-    <div className="grid grid-cols-7 border rounded-md p-3 gap-1 h-96">
+    <div className="grid grid-cols-7 border rounded-md p-3 gap-1 w-full h-full aspect-square">
       {days.map((day) => (
-        <div className="text-xs text-muted-foreground mb-2" key={day}>
+        <div
+          className="text-xs text-muted-foreground mb-2 flex items-center justify-center w-full h-full"
+          key={day}
+        >
           {day}
         </div>
       ))}
@@ -21,7 +22,7 @@ export const DatePicker = () => {
         <div
           className={cn(
             date.getMonth() !== month - 1 && "text-muted-foreground",
-            "flex items-center justify-center w-9 h-9 text-sm hover:cursor-pointer hover:bg-secondary hover:rounded-xs"
+            "flex items-center justify-center w-full h-full text-sm hover:cursor-pointer hover:bg-secondary hover:rounded-xs"
           )}
           key={date.toDateString()}
         >

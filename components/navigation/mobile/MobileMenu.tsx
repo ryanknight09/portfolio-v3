@@ -1,5 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { Nav } from "./Nav";
+import { AnimatePresence } from "framer-motion";
 
 interface Props {
   activeMenu: boolean;
@@ -8,16 +7,16 @@ interface Props {
 
 export const MobileMenu = ({ activeMenu, onNavChange }: Props) => {
   return (
-    <motion.div
-      className="w-full h-[calc(100vh - 96px)] bg-background absolute top-24"
-      variants={menu}
-      animate={activeMenu ? "open" : "closed"}
-      initial="closed"
-    >
-      <AnimatePresence>
-        {activeMenu && <Nav onNavChange={onNavChange} />}
-      </AnimatePresence>
-    </motion.div>
+    // <motion.div
+    //   className="w-full h-[calc(100vh - 96px)] bg-background absolute top-24"
+    //   variants={menu}
+    //   animate={activeMenu ? "open" : "closed"}
+    //   initial="closed"
+    // >
+    <AnimatePresence>
+      {/* {activeMenu && <Nav onNavChange={onNavChange} />} */}
+    </AnimatePresence>
+    // </motion.div>
   );
 };
 

@@ -8,3 +8,9 @@ export type NavigationItem = {
     } & React.RefAttributes<SVGSVGElement>
   >;
 };
+
+export type Path = {
+  name: string;
+  url: string;
+  children?: Path[];
+};
