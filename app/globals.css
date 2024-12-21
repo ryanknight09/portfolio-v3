@@ -123,4 +123,15 @@ body {
   .clamp-font {
     font-size: clamp(60px, 7.5vw + 10px, 250px);
   }
+  @layer responsive {
+    /* Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+  }
 }

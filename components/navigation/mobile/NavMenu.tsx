@@ -15,7 +15,7 @@ export const NavMenu = () => {
   return (
     <Sheet onOpenChange={setOpen} open={open}>
       <SheetTrigger asChild>
-        <MenuButton isOpen={open} onClick={() => setOpen(!open)} />
+        <MenuButton isOpen={open} />
       </SheetTrigger>
       <SheetContent side="left" className="w-full">
         <VisuallyHidden.Root>

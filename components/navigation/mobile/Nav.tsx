@@ -1,72 +1,87 @@
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { type NavigationItem } from "@/types/navigationItem";
-import { motion } from "framer-motion";
+import { type Path } from "@/types/navigationItem";
 import {
   CircleUser,
+  FlaskConical,
   FolderGit2,
   House,
   Layers,
   Mail,
   Newspaper,
+  type LucideProps,
 } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { perspective } from "./NavAnimation";
+import {
+  Fragment,
+  type ForwardRefExoticComponent,
+  type RefAttributes,
+} from "react";
 
-const paths: NavigationItem[] = [
-  { name: "home", url: "/", icon: House },
-  { name: "about", url: "/about", icon: CircleUser },
-  { name: "projects", url: "/projects", icon: FolderGit2 },
-  { name: "stacks", url: "/stacks", icon: Layers },
-  { name: "posts", url: "/posts", icon: Newspaper },
-  { name: "contact", url: "/contact", icon: Mail },
-];
+interface IconKeys {
+  [key: string]: ForwardRefExoticComponent<
+    Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
+  >;
+}
+
+const iconMap: IconKeys = {
+  home: House,
+  about: CircleUser,
+  projects: FolderGit2,
+  stacks: Layers,
+  posts: Newspaper,
+  contact: Mail,
+  experimental: FlaskConical,
+};
 
 interface Props {
+  paths: Path[];
   onNavChange: () => void;
 }
 
-export const Nav = ({ onNavChange }: Props) => {
-  const pathname = usePathname().replace(/^\/+/, "");
+// TODO: Make change Path type and make Nav Recursive.
 
+export const Nav = ({ paths, onNavChange }: Props) => {
   return (
-    <div className="flex flex-col justify-start gap-12 py-6 h-full px-16">
-      {paths.map((path, index) => {
-        const isCurrentPath = pathname === path.url.replace(/^\/+/, "");
+    <ul className="grid gap-1.5 p-6 overflow-auto no-scrollbar mb-12">
+      {paths.map((path) => {
+        const Icon = iconMap[path.name];
 
         return (
-          <motion.div
-            key={path.name}
-            custom={index}
-            variants={perspective}
-            initial="initial"
-            animate="enter"
-            exit="exit"
-            className="w-full"
-          >
-            <Link
-              onClick={onNavChange}
-              className={cn(
-                buttonVariants({ variant: "navigation" }),
-                "group capitalize h-12 w-full bg-secondary hover:scale-110 transition-transform max-w-md",
-                isCurrentPath &&
-                  "bg-primary hover:text-secondary-foreground text-secondary-foreground hover:bg-primary/80"
+          <Fragment key={path.name}>
+            <li>
+              {path.children ? (
+                <div className="capitalize h-12 text-secondary-foreground flex items-center gap-3">
+                  <Icon className="w-5 h-5" />
+                  <span>{path.name}</span>
+                </div>
+              ) : (
+                <Link
+                  onClick={onNavChange}
+                  className="capitalize h-12 text-secondary-foreground flex items-center gap-3 cursor-pointer hover:text-primary"
+                  href={path.url}
+                >
+                  <Icon className="w-5 h-5" />
+                  <span>{path.name}</span>
+                </Link>
               )}
-              href={path.url}
-            >
-              <path.icon
-                className={cn(
-                  !isCurrentPath &&
-                    "group-hover:scale-150 transition-transform",
-                  "w-5 h-5"
-                )}
-              />
-              {path.name}
-            </Link>
-          </motion.div>
+            </li>
+            {path.children && path.children.length > 0 && (
+              <ul className="grid gap-4">
+                {path.children.map((child) => (
+                  <li key={child.name}>
+                    <Link
+                      onClick={onNavChange}
+                      className="capitalize ml-8 h-12 text-muted-foreground cursor-pointer hover:text-primary"
+                      href={child.url}
+                    >
+                      {child.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Fragment>
         );
       })}
-    </div>
+    </ul>
   );
 };
