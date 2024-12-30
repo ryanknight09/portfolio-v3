@@ -9,7 +9,7 @@ interface Props {
 export const DesktopNav = ({ paths }: Props) => {
   return (
     <nav className="hidden md:block sticky top-0 min-w-fit h-screen md:no-scrollbar overflow-auto">
-      <div className="flex flex-col gap-12 p-6 xl:p-12 w-auto border-r">
+      <div className="flex flex-col gap-12 p-6 xl:p-12 w-auto border-r h-full">
         <div className="flex flex-col gap-6">
           <div className="relative w-40 h-40 xl:w-[192px] xl:h-[192px]">
             <Image
