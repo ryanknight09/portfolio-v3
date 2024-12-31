@@ -1,4 +1,4 @@
-import { DatePicker } from "./date-picker/DatePicker";
+import { DatePickerExample } from "./date-picker/DatePickerExample";
 import { TreeExample } from "./tree/TreeExample";
 
 interface BlockKeys {
@@ -7,5 +7,5 @@ interface BlockKeys {
 
 export const experimentalBlocks: BlockKeys = {
   "recursive-tree": <TreeExample />,
-  "date-picker": <DatePicker />,
+  "date-picker": <DatePickerExample />,
 };
