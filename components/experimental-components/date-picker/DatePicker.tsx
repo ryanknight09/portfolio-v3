@@ -1,34 +1,40 @@
-import { cn } from "@/lib/utils";
-import { generateCalendarDates } from "@/utils/generateDates";
+"use client";
 
-const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+import { generateCalendarDates } from "@/utils/generateDates";
+import { useState } from "react";
+import { Day } from "./Day";
+import { Days } from "./Days";
+import { MonthPicker } from "./MonthPicker";
+import { YearPicker } from "./YearPicker";
 
 export const DatePicker = () => {
-  const year = 2024;
-  const month = 10;
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [year, setYear] = useState(new Date().getUTCFullYear());
+  const [month, setMonth] = useState(new Date().getUTCMonth() + 1);
+
   const dates = generateCalendarDates(year, month);
+  const isDateInCurrentMonth = (date: Date) => date.getMonth() === month - 1;
 
   return (
-    <div className="grid grid-cols-7 border rounded-md p-3 gap-1 w-full h-full aspect-square">
-      {days.map((day) => (
-        <div
-          className="text-xs text-muted-foreground mb-2 flex items-center justify-center w-full h-full"
-          key={day}
-        >
-          {day}
+    <div className="flex flex-col gap-4">
+      <div className="flex gap-4">
+        <YearPicker onChange={setYear} />
+        <MonthPicker year={year} onChange={setMonth} />
+      </div>
+      <div className="flex flex-col border gap-4 rounded-md p-3 w-full">
+        <Days />
+        <div className="grid grid-cols-7 gap-1 w-full">
+          {dates.map((date) => (
+            <Day
+              key={date.toDateString()}
+              date={date}
+              isSelected={date.getTime() === selectedDate?.getTime()}
+              isInCurrentMonth={isDateInCurrentMonth(date)}
+              onClick={setSelectedDate}
+            />
+          ))}
         </div>
-      ))}
-      {dates.map((date) => (
-        <div
-          className={cn(
-            date.getMonth() !== month - 1 && "text-muted-foreground",
-            "flex items-center justify-center w-full h-full text-sm hover:cursor-pointer hover:bg-secondary hover:rounded-xs"
-          )}
-          key={date.toDateString()}
-        >
-          {date.getDate()}
-        </div>
-      ))}
+      </div>
     </div>
   );
 };

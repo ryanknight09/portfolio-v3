@@ -35,11 +35,15 @@ function fillPreviousMonthDates(
     const lastDayOfPreviousMonth = new Date(previousYear, previousMonth + 1, 0);
     const daysToFill = firstDayIndex;
 
+    const previousMonthDates: Date[] = [];
+
     for (let i = 0; i < daysToFill; i++) {
       const dayToAdd = new Date(lastDayOfPreviousMonth);
       dayToAdd.setDate(lastDayOfPreviousMonth.getDate() - daysToFill + i + 1);
-      dates.unshift(dayToAdd);
+      previousMonthDates.push(dayToAdd);
     }
+
+    dates.unshift(...previousMonthDates);
   }
 }
 
