@@ -8,19 +8,18 @@ import { MonthPicker } from "./MonthPicker";
 import { YearPicker } from "./YearPicker";
 
 interface Props {
+  selectedDate: Date | null;
   onChange: (date: Date) => void;
 }
 
-export const DatePicker = ({ onChange }: Props) => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [year, setYear] = useState(new Date().getUTCFullYear());
-  const [month, setMonth] = useState(new Date().getUTCMonth() + 1);
+export const DatePicker = ({ selectedDate, onChange }: Props) => {
+  const [year, setYear] = useState(new Date().getFullYear());
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
 
   const dates = generateCalendarDates(year, month);
   const isDateInCurrentMonth = (date: Date) => date.getMonth() === month - 1;
 
   const onDateSelect = (date: Date) => {
-    setSelectedDate(date);
     onChange(date);
   };
 
