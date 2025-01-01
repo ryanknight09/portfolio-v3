@@ -1,39 +1,41 @@
 import type { MetadataRoute } from "next";
 
+const BASE_URL = "https://ryanknight.io";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "https://portfolio-v3-rho-teal.vercel.app/",
+      url: BASE_URL,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 1,
     },
     {
-      url: "https://portfolio-v3-rho-teal.vercel.app/about",
+      url: `${BASE_URL}/about`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.8,
     },
     {
-      url: "https://portfolio-v3-rho-teal.vercel.app/projects",
+      url: `${BASE_URL}/projects`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.8,
     },
     {
-      url: "https://portfolio-v3-rho-teal.vercel.app/contact",
+      url: `${BASE_URL}/contact`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
-      url: "https://portfolio-v3-rho-teal.vercel.app/posts",
+      url: `${BASE_URL}/posts`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: "https://portfolio-v3-rho-teal.vercel.app/experimental",
+      url: `${BASE_URL}/experimental`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
