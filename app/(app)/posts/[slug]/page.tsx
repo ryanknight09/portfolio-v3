@@ -19,9 +19,9 @@ export default async function Page({ params }: Props) {
   }
 
   return (
-    <main className="container mx-auto md:pt-12 grid grid-cols-1 gap-6 md:px-6 lg:px-12">
+    <div className="container md:pt-12 flex gap-6 md:px-6 justify-center lg:px-12">
       <Post {...post} />
-    </main>
+    </div>
   );
 }
 

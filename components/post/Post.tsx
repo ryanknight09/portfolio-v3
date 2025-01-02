@@ -17,7 +17,7 @@ export const Post = ({
   categories,
 }: Props) => {
   return (
-    <article className="mx-auto grid gap-y-12 max-w-6xl">
+    <article className="flex flex-col h-full gap-12 w-full max-w-6xl">
       <header className="flex flex-col gap-4 items-start">
         <div className="flex gap-4 items-center">
           <PostCategories categories={categories} />
@@ -29,11 +29,13 @@ export const Post = ({
         <Author author={author} />
       </header>
       <PostImage image={mainImage} title={title} />
-      {body ? (
-        <div className="prose max-w-none">
-          <PortableText value={body} components={components} />
-        </div>
-      ) : null}
+      <div className="w-full">
+        {body ? (
+          <div className="prose max-w-none">
+            <PortableText value={body} components={components} />
+          </div>
+        ) : null}
+      </div>
     </article>
   );
 };
