@@ -15,7 +15,7 @@ export async function contactAction(
   const parsed = contactSchema.safeParse(formData);
 
   if (!parsed.success) {
-    return handleInvalidForm({ formData, parsed });
+    return handleInvalidForm({ parsed });
   }
 
   try {
@@ -29,21 +29,18 @@ export async function contactAction(
     if (error instanceof Error) {
       return {
         message: error.message,
-        isError: true,
-        isSuccess: false,
+        success: false,
       };
     }
 
     return {
       message: "Something went wrong",
-      isError: true,
-      isSuccess: false,
+      success: false,
     };
   }
 
   return {
     message: "success",
-    isError: false,
-    isSuccess: true,
+    success: true,
   };
 }

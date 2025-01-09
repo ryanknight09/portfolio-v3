@@ -10,7 +10,7 @@ export const ContactFormFooter = ({ isPending, state }: Props) => (
   <div className="flex flex-col space-y-4">
     {state.message && (
       <p
-        className={`text-sm ${state.isError ? "text-red-500" : "text-primary"}`}
+        className={`text-sm ${!state.success ? "text-red-500" : "text-primary"}`}
       >
         {state.message}
       </p>

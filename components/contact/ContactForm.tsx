@@ -4,23 +4,25 @@ import { contactAction } from "@/app/actions/contactAction";
 import { FormInput } from "@/components/form/FormInput";
 import { FormTextArea } from "@/components/form/FormTextArea";
 import { Form } from "@/components/ui/form";
-import { useActionLifeCycle } from "@/hooks/useActionLifeCycle";
+import { useHookFormActionState } from "@/hooks/useHookFormActionState";
 import { contactSchema } from "@/schemas/contactSchema";
 import { ContactFormFooter } from "./ContactFormFooter";
 import { ContactFormSuccess } from "./ContactFormSuccess";
 
 export function ContactForm() {
-  const { runAction, state, isPending, form, formRef } = useActionLifeCycle({
-    action: contactAction,
-    schema: contactSchema,
-    defaultFormValues: {
-      name: "",
-      email: "",
-      message: "",
-    },
-  });
+  const { runAction, state, isPending, form, formRef } = useHookFormActionState(
+    {
+      action: contactAction,
+      schema: contactSchema,
+      defaultFormValues: {
+        name: "",
+        email: "",
+        message: "",
+      },
+    }
+  );
 
-  if (state.message === "success") return <ContactFormSuccess />;
+  if (state.success) return <ContactFormSuccess />;
 
   return (
     <Form {...form}>
@@ -29,7 +31,7 @@ export function ContactForm() {
         ref={formRef}
         className="flex flex-col gap-2 max-w-3xl"
       >
-        {state.message && state.isError && (
+        {state.message && !state.success && (
           <p className="text-sm text-red-500">{state.message}</p>
         )}
         <p className="mb-4 text-lg">Send Me an Email</p>

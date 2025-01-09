@@ -1,4 +1,5 @@
 import { DatePickerExample } from "./date-picker/DatePickerExample";
+import { ServerActionForm } from "./server-action/ServerActionForm";
 import { TreeExample } from "./tree/TreeExample";
 
 interface BlockKeys {
@@ -8,4 +9,5 @@ interface BlockKeys {
 export const experimentalBlocks: BlockKeys = {
   "recursive-tree": <TreeExample />,
   "date-picker": <DatePickerExample />,
+  "server-action-form": <ServerActionForm />,
 };

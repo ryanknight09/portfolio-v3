@@ -1,8 +1,6 @@
-export type FormState<T = unknown> = {
-  message: string;
-  fields?: Record<string, string>;
-  issues?: string[];
-  isError?: boolean;
-  isSuccess?: boolean;
+export interface FormState<T = unknown> {
   data?: T;
-};
+  success: boolean;
+  message: string;
+  errors?: string[];
+}
