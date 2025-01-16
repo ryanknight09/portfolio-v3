@@ -1,17 +1,8 @@
 "use server";
 
+import { addressSchema } from "@/schemas/addressSchema";
 import { type FormState } from "@/types/FormState";
 import { handleInvalidForm } from "@/utils/invalidFormValues";
-import { z } from "zod";
-
-const addressSchema = z.object({
-  streetAddress: z.string().min(1, "Street address is required"),
-  apartment: z.string().optional(),
-  city: z.string().min(1, "City is required"),
-  state: z.string().min(1, "State is required"),
-  zipCode: z.string().min(5, "ZIP code must be at least 5 characters"),
-  country: z.string().min(1, "Country is required"),
-});
 
 export async function addressAction(
   prevState: FormState | null,
